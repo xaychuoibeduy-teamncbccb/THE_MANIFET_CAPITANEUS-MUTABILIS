@@ -3,196 +3,221 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MNF PASS - SẴN SÀNG GIẬT VÉ CAPTAIN BOY</title>
+  <title>CAPITANEUS MUTABILIS - VIP ACCESS PASS</title>
   
-  <!-- Font chữ Sci-fi & Metallic -->
+  <!-- Font Montserrat chuẩn 100% Tiếng Việt có dấu, phong cách Luxury Concert -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Montserrat:ital,wght@0,700;0,900;1,700&family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&display=swap" rel="stylesheet">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
     :root {
-      --bg-yellow: #f8db00;
-      --c-winter: #58a6ff;
-      --c-autumn: #ffd214;
-      --c-summer: #20dfa7;
-      --c-spring: #ff3377;
+      --gold-yellow: #f5d000;
+      --c-winter: #64b5f6;
+      --c-autumn: #ffd54f;
+      --c-summer: #4dd0e1;
+      --c-spring: #ff4081;
+      --active-tier-color: var(--c-winter);
+      --active-glow: rgba(100, 181, 246, 0.45);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--bg-yellow);
+      background-color: var(--gold-yellow);
       background-image: 
-        radial-gradient(circle at 50% 15%, rgba(255, 120, 0, 0.45) 0%, rgba(248, 219, 0, 0) 55%),
-        repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 8px);
-      font-family: 'Be Vietnam Pro', sans-serif;
-      color: #111;
+        radial-gradient(circle at 50% 10%, rgba(255, 90, 0, 0.55) 0%, rgba(245, 208, 0, 0.15) 50%, transparent 80%),
+        radial-gradient(rgba(0, 0, 0, 0.18) 1.5px, transparent 1.5px);
+      background-size: 100% 100%, 14px 14px;
+      font-family: 'Montserrat', sans-serif;
+      color: #0b0b0d;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 16px 12px 50px;
+      padding: 30px 14px 70px;
     }
 
     .header-logo {
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 30px;
     }
 
     .main-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.8rem, 5.5vw, 3.2rem);
+      font-size: clamp(2rem, 5.5vw, 3.6rem);
       font-weight: 900;
-      color: #111;
+      color: #0b0b0e;
       text-transform: uppercase;
       letter-spacing: 2px;
-      line-height: 1.05;
-      text-shadow: 2px 2px 0px #fff, 4px 4px 0px rgba(0,0,0,0.2);
+      line-height: 1.02;
+      text-shadow: 2px 2px 0px #fff, 5px 5px 0px rgba(0,0,0,0.25);
     }
 
     .sub-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.8rem;
       font-weight: 900;
-      letter-spacing: 3px;
-      color: #000;
-      background: #fff;
+      letter-spacing: 5px;
+      color: #fff;
+      background: #0b0b0e;
       display: inline-block;
-      padding: 4px 14px;
-      margin-top: 8px;
-      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
-      box-shadow: 3px 3px 0px #000;
+      padding: 6px 20px;
+      margin-top: 10px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
     .container {
       width: 100%;
-      max-width: 950px;
+      max-width: 1000px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 25px;
+      gap: 35px;
       align-items: flex-start;
     }
 
     /* FORM NHẬP THÔNG TIN */
     .form-box {
       flex: 1;
-      min-width: 310px;
-      max-width: 420px;
-      background: #111114;
-      border: 2px solid #282828;
-      border-radius: 12px;
-      padding: 22px;
+      min-width: 320px;
+      max-width: 440px;
+      background: linear-gradient(160deg, #16161b 0%, #0c0c0f 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 28px 24px;
       color: #fff;
-      box-shadow: 6px 6px 0px rgba(0,0,0,0.3);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.65), 0 0 0 1px rgba(0,0,0,0.4);
+    }
+
+    .form-box-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .form-box h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.15rem;
-      margin-bottom: 15px;
-      color: var(--bg-yellow);
-      letter-spacing: 1px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .form-box .sys-code {
+      font-family: monospace;
+      font-size: 0.65rem;
+      color: var(--gold-yellow);
+      letter-spacing: 1.5px;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     label {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
-      color: #ccc;
-      margin-bottom: 6px;
-      letter-spacing: 0.5px;
+      color: #8c8c99;
+      margin-bottom: 7px;
+      letter-spacing: 1px;
     }
 
     input, textarea {
       width: 100%;
-      padding: 11px 12px;
-      background: #1e1e24;
-      border: 1.5px solid #3d3d4a;
-      border-radius: 6px;
+      padding: 12px 14px;
+      background: #060608;
+      border: 1px solid #282832;
+      border-radius: 8px;
       color: #fff;
-      font-family: inherit;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.9rem;
       outline: none;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
     }
 
     input:focus, textarea:focus {
-      border-color: var(--bg-yellow);
+      border-color: var(--gold-yellow);
+      box-shadow: 0 0 14px rgba(245, 208, 0, 0.25);
     }
 
     /* Upload Avatar */
     .file-upload-wrap {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
     .file-btn {
-      background: #252530;
-      padding: 9px 14px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
+      background: linear-gradient(180deg, #2a2a35 0%, #1a1a22 100%);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       cursor: pointer;
-      border: 1px solid #444;
-      color: #ddd;
-      transition: 0.2s;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #e0e0e0;
+      transition: all 0.2s;
     }
     .file-btn:hover {
-      background: #323240;
-      border-color: #777;
+      background: #343442;
+      color: #fff;
+      border-color: var(--gold-yellow);
+    }
+    .file-name-text {
+      font-size: 0.75rem;
+      color: #71717f;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    /* Chọn Hạng Vé Mục Tiêu */
+    /* Hạng Vé - Switcher Style */
     .tier-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
 
-    .tier-btn input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-    }
+    .tier-btn input[type="radio"] { position: absolute; opacity: 0; }
 
     .tier-label {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 9px;
-      border-radius: 6px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
+      padding: 12px 8px;
+      border-radius: 8px;
+      font-size: 0.85rem;
       font-weight: 800;
+      letter-spacing: 1.5px;
       cursor: pointer;
-      border: 2px solid transparent;
-      color: #fff;
-      transition: all 0.2s;
+      border: 1px solid #282834;
+      background: #09090c;
+      color: #888;
+      transition: all 0.25s;
     }
 
-    .tier-winter .tier-label { background: #1a2a40; border-color: var(--c-winter); color: var(--c-winter); }
-    .tier-autumn .tier-label { background: #3c3400; border-color: var(--c-autumn); color: var(--c-autumn); }
-    .tier-summer .tier-label { background: #00372d; border-color: var(--c-summer); color: var(--c-summer); }
-    .tier-spring .tier-label { background: #3d0a1e; border-color: var(--c-spring); color: var(--c-spring); }
-
-    .tier-btn input[type="radio"]:checked + .tier-label {
-      transform: scale(1.02);
-      color: #000;
+    .tier-label span.small-desc {
+      font-family: monospace;
+      font-size: 0.6rem;
+      color: #555;
+      margin-top: 3px;
     }
-    .tier-winter input[type="radio"]:checked + .tier-label { background: var(--c-winter); }
-    .tier-autumn input[type="radio"]:checked + .tier-label { background: var(--c-autumn); }
-    .tier-summer input[type="radio"]:checked + .tier-label { background: var(--c-summer); }
-    .tier-spring input[type="radio"]:checked + .tier-label { background: var(--c-spring); }
 
-    /* PREVIEW THẺ (CONCERT VIP PASS) */
+    .tier-winter input:checked + .tier-label { border-color: var(--c-winter); color: var(--c-winter); background: rgba(100, 181, 246, 0.12); box-shadow: 0 0 16px rgba(100, 181, 246, 0.25); }
+    .tier-autumn input:checked + .tier-label { border-color: var(--c-autumn); color: var(--c-autumn); background: rgba(255, 213, 79, 0.12); box-shadow: 0 0 16px rgba(255, 213, 79, 0.25); }
+    .tier-summer input:checked + .tier-label { border-color: var(--c-summer); color: var(--c-summer); background: rgba(77, 208, 225, 0.12); box-shadow: 0 0 16px rgba(77, 208, 225, 0.25); }
+    .tier-spring input:checked + .tier-label { border-color: var(--c-spring); color: var(--c-spring); background: rgba(255, 64, 129, 0.12); box-shadow: 0 0 16px rgba(255, 64, 129, 0.25); }
+
+    /* PREVIEW CARD: VIP METALLIC PASS */
     .preview-area {
       display: flex;
       flex-direction: column;
@@ -202,236 +227,321 @@
     #ticket-wrapper {
       width: 360px;
       height: 640px;
-      background: #0d0d10;
-      border-radius: 18px;
+      background: #070709;
+      border-radius: 20px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-      border: 2px solid #333;
+      box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.75),
+        0 0 0 1px rgba(255, 255, 255, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    .ticket-bg {
+    #ticket-wrapper::before {
+      content: "";
       position: absolute;
-      top: -40px;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #ff007f, #f5d000, #00f2fe, #4facfe, #ff007f);
+      z-index: 10;
+    }
+
+    .ticket-orb {
+      position: absolute;
+      top: -60px;
       left: 50%;
       transform: translateX(-50%);
-      width: 320px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(255,140,0,0.85) 0%, rgba(255,80,0,0.2) 55%, transparent 70%);
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle, rgba(255, 120, 0, 0.95) 0%, rgba(255, 60, 0, 0.35) 45%, transparent 70%);
       border-radius: 50%;
-      filter: blur(20px);
+      filter: blur(28px);
       z-index: 1;
       pointer-events: none;
+    }
+
+    .ticket-watermark {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.02);
+      letter-spacing: 12px;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
     }
 
     .ticket-inner {
       position: relative;
       z-index: 2;
       height: 100%;
-      padding: 22px 20px;
+      padding: 22px 20px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       color: #fff;
     }
 
-    /* Lỗ đeo thẻ concert */
-    .lanyard-hole {
-      width: 50px;
+    .lanyard-slot {
+      width: 44px;
       height: 7px;
-      background: #000;
-      border: 1.5px solid #444;
+      background: #030304;
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 10px;
-      margin: 0 auto 12px;
+      margin: 0 auto 10px;
     }
 
-    .ticket-header {
+    .ticket-top {
       text-align: center;
     }
 
-    .event-tag {
+    .tour-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-family: monospace;
       font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--bg-yellow);
+      color: #b0b0b8;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
     }
 
-    .ticket-event-name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 900;
-      letter-spacing: 1px;
-      background: linear-gradient(180deg, #ffffff 0%, #d0d0d0 50%, #777 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.1;
-      margin: 5px 0 8px;
+    .tour-meta .live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--gold-yellow);
+      font-weight: 700;
     }
 
-    /* Tag Sẵn Sàng Giật Vé cố định */
+    .tour-meta .live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold-yellow);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--gold-yellow);
+    }
+
+    .ticket-title-main {
+      font-size: 1.48rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      line-height: 1.05;
+      background: linear-gradient(180deg, #ffffff 0%, #d8d8df 45%, #888894 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
     .status-badge-card {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
       padding: 5px 14px;
-      border-radius: 20px;
-      background: rgba(0, 0, 0, 0.75);
-      border: 1.5px solid var(--bg-yellow);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 900;
-      color: var(--bg-yellow);
-      letter-spacing: 1.5px;
-      box-shadow: 0 0 12px rgba(248, 219, 0, 0.35);
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(245, 208, 0, 0.6);
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--gold-yellow);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px rgba(245, 208, 0, 0.2);
     }
 
-    /* Fan Info Section */
-    .ticket-middle {
-      background: rgba(20, 20, 25, 0.75);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+    .ticket-body {
+      background: rgba(14, 14, 18, 0.68);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
-      padding: 16px 14px;
+      padding: 14px;
+      margin-top: 10px;
+    }
+
+    .fan-profile-row {
       display: flex;
       gap: 14px;
       align-items: center;
     }
 
-    .avatar-frame {
-      width: 80px;
-      height: 80px;
-      border-radius: 12px;
-      border: 2px solid var(--bg-yellow);
+    .avatar-wrapper {
+      width: 76px;
+      height: 76px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      background: #111116;
       overflow: hidden;
       flex-shrink: 0;
-      background: #25252d;
+      position: relative;
     }
 
-    .avatar-frame img {
+    .avatar-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    .fan-text-info {
+    .avatar-wrapper .avatar-chip {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 14px;
+      height: 10px;
+      background: linear-gradient(135deg, #ffd700, #b8860b);
+      border-radius: 2px;
+      opacity: 0.85;
+    }
+
+    .fan-meta-col {
       flex: 1;
       overflow: hidden;
     }
 
-    .ticket-label-small {
-      font-size: 0.6rem;
+    .field-caption {
+      font-family: monospace;
+      font-size: 0.58rem;
+      color: #7b7b8a;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: #888;
     }
 
-    .fan-nickname {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 900;
+    .fan-nickname-display {
+      font-size: 1.25rem;
+      font-weight: 800;
       color: #fff;
       text-transform: uppercase;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       margin: 2px 0 6px;
+      min-height: 28px;
     }
 
-    .ticket-tier-display {
+    .tier-badge-card {
       display: inline-block;
       padding: 4px 10px;
-      border-radius: 6px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 900;
-      color: #000;
-      background: var(--c-winter);
-      box-shadow: 0 0 12px rgba(88, 166, 255, 0.5);
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #050507;
+      background: var(--active-tier-color);
+      box-shadow: 0 0 14px var(--active-glow);
     }
 
-    /* Lời chúc / Quyết tâm */
-    .fan-message-wrap {
-      background: rgba(0, 0, 0, 0.45);
-      border-left: 3px solid var(--bg-yellow);
-      padding: 10px 12px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-style: italic;
-      color: #ddd;
+    .message-container {
       margin-top: 10px;
-      min-height: 48px;
-      max-height: 60px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: none; /* Chỉ hiện khi có nhập nội dung */
+    }
+
+    .message-text {
+      font-size: 0.75rem;
+      line-height: 1.35;
+      font-style: italic;
+      color: #d1d1db;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 8px 10px;
+      border-left: 2px solid var(--gold-yellow);
+      border-radius: 4px;
+      max-height: 52px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
 
-    /* Chân vé */
-    .ticket-footer {
-      border-top: 1px dashed rgba(255, 255, 255, 0.2);
-      padding-top: 10px;
+    .ticket-bottom {
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
+      padding-top: 12px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
     }
 
-    .venue-date {
-      font-family: 'Orbitron', sans-serif;
+    .venue-block .venue-date {
       font-size: 0.95rem;
-      font-weight: 900;
-      color: var(--bg-yellow);
+      font-weight: 800;
+      color: var(--gold-yellow);
+      letter-spacing: 1px;
     }
 
-    .venue-place {
-      font-size: 0.7rem;
+    .venue-block .venue-title {
+      font-size: 0.68rem;
       font-weight: 700;
-      color: #aaa;
+      color: #eaeaf0;
+      margin-top: 1px;
     }
 
-    .barcode {
-      display: flex;
-      gap: 2.5px;
-      height: 24px;
-      align-items: flex-end;
-      justify-content: flex-end;
-    }
-    .barcode-line { width: 2px; background: #fff; height: 100%; }
-    .barcode-code {
+    .venue-block .venue-sub {
       font-family: monospace;
-      font-size: 0.6rem;
-      color: #777;
+      font-size: 0.55rem;
+      color: #7b7b8a;
+      letter-spacing: 0.5px;
+    }
+
+    .security-block {
       text-align: right;
+    }
+
+    .barcode-bars {
+      display: flex;
+      gap: 2px;
+      height: 22px;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    .barcode-line { width: 2px; background: #fff; height: 100%; opacity: 0.85; }
+    
+    .serial-tag {
+      font-family: monospace;
+      font-size: 0.58rem;
+      color: #8c8c99;
+      letter-spacing: 1px;
       margin-top: 3px;
     }
 
     .download-btn {
-      margin-top: 14px;
-      background: #111;
+      margin-top: 18px;
+      background: #000;
       color: #fff;
-      border: 2px solid #000;
-      padding: 12px 26px;
-      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 14px 30px;
+      border-radius: 40px;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: 0.2s;
+      gap: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
+
     .download-btn:hover {
-      background: #2a2a30;
-      transform: scale(1.03);
+      background: #181820;
+      border-color: var(--gold-yellow);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.5);
     }
 
     @media (max-width: 800px) {
       .container { flex-direction: column; align-items: center; }
-      .form-box, #ticket-wrapper { width: 100%; max-width: 350px; }
+      .form-box, #ticket-wrapper { width: 100%; max-width: 360px; }
     }
   </style>
 </head>
@@ -439,104 +549,133 @@
 
   <div class="header-logo">
     <h1 class="main-title">CAPITANEUS<br>MUTABILIS</h1>
-    <div class="sub-title">MANIFET SẴN SÀNG GIẬT VÉ</div>
+    <div class="sub-title">MANIFET OFFICIAL ACCESS PASS</div>
   </div>
 
   <div class="container">
     
     <!-- KHỐI NHẬP LIỆU -->
     <div class="form-box">
-      <h3>⚡ THÔNG TIN CHIẾN THẦN</h3>
-
-      <div class="form-group">
-        <label>Fanname / Biệt danh:</label>
-        <input type="text" id="inputNickname" placeholder="VD: Cừu Có Cánh...">
+      <div class="form-box-header">
+        <h3>THÔNG TIN MANIFET</h3>
+        <span class="sys-code">VER: 2026.VIP</span>
       </div>
 
       <div class="form-group">
-        <label>Tải ảnh đại diện (Tùy chọn):</label>
+        <label>FANNAME / BIỆT DANH</label>
+        <input type="text" id="inputNickname" placeholder="Nhập fanname của bạn...">
+      </div>
+
+      <div class="form-group">
+        <label>ẢNH ĐẠI DIỆN</label>
         <div class="file-upload-wrap">
-          <label class="file-btn" for="avatarInput">📁 Chọn ảnh từ máy</label>
+          <label class="file-btn" for="avatarInput">CHỌN ẢNH</label>
           <input type="file" id="avatarInput" accept="image/*" style="display:none;" onchange="handleAvatar(event)">
-          <span id="fileName" style="font-size: 0.75rem; color:#888;">Chưa chọn ảnh</span>
+          <span class="file-name-text" id="fileName">Chưa chọn ảnh</span>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Mục tiêu hạng vé giật ngày 26/10:</label>
+        <label>HẠNG VÉ MỤC TIÊU</label>
         <div class="tier-options">
           <label class="tier-btn tier-winter">
             <input type="radio" name="tier" value="WINTER" checked>
-            <span class="tier-label">❄️ WINTER</span>
+            <span class="tier-label">
+              WINTER
+              <span class="small-desc">VIP ZONE</span>
+            </span>
           </label>
           <label class="tier-btn tier-autumn">
             <input type="radio" name="tier" value="AUTUMN">
-            <span class="tier-label">🍂 AUTUMN</span>
+            <span class="tier-label">
+              AUTUMN
+              <span class="small-desc">PREMIUM</span>
+            </span>
           </label>
           <label class="tier-btn tier-summer">
             <input type="radio" name="tier" value="SUMMER">
-            <span class="tier-label">☀️ SUMMER</span>
+            <span class="tier-label">
+              SUMMER
+              <span class="small-desc">STANDARD</span>
+            </span>
           </label>
           <label class="tier-btn tier-spring">
             <input type="radio" name="tier" value="SPRING">
-            <span class="tier-label">🌸 SPRING</span>
+            <span class="tier-label">
+              SPRING
+              <span class="small-desc">GENERAL</span>
+            </span>
           </label>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Lời nhắn đến CAPTAIN BOY:</label>
-        <textarea id="inputMessage" rows="2" placeholder="Gửi gắm quyết tâm..."></textarea>
+        <label>LỜI NHẮN ĐẾN CAPTAIN BOY</label>
+        <textarea id="inputMessage" rows="2" placeholder="Nhập lời nhắn gửi gắm..."></textarea>
       </div>
     </div>
 
-    <!-- KHỐI XEM TRƯỚC THẺ -->
+    <!-- KHỐI PREVIEW THẺ VIP PASS -->
     <div class="preview-area">
       <div id="ticket-wrapper">
-        <div class="ticket-bg"></div>
+        <div class="ticket-orb"></div>
+        <div class="ticket-watermark">MUTABILIS</div>
+
         <div class="ticket-inner">
           
-          <div class="ticket-header">
-            <div class="lanyard-hole"></div>
-            <div class="event-tag">CAPTAIN BOY FAN MEETING 2026</div>
-            <div class="ticket-event-name">CAPITANEUS<br>MUTABILIS</div>
-            <div class="status-badge-card">🎯 SẴN SÀNG GIẬT VÉ</div>
+          <!-- TOP PASS -->
+          <div class="ticket-top">
+            <div class="lanyard-slot"></div>
+            <div class="tour-meta">
+              <span>CB FAN MEETING 2026</span>
+              <span class="live-indicator"><span class="live-dot"></span> PRIORITY</span>
+            </div>
+            <div class="ticket-title-main">CAPITANEUS<br>MUTABILIS</div>
+            <div class="status-badge-card">SẴN SÀNG GIẬT VÉ</div>
           </div>
 
-          <div>
-            <div class="ticket-middle">
-              <div class="avatar-frame">
-                <img id="cardAvatar" src="anh.png" alt="Avatar">
+          <!-- BODY PASS -->
+          <div class="ticket-body">
+            <div class="fan-profile-row">
+              <div class="avatar-wrapper">
+                <img id="cardAvatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%2322222a'><rect width='100' height='100' fill='%23121218'/><circle cx='50' cy='38' r='18' fill='%23555566'/><path d='M22 84 C22 64, 34 58, 50 58 C66 58, 78 64, 78 84 Z' fill='%23555566'/></svg>" alt="Passenger">
+                <div class="avatar-chip"></div>
               </div>
-              <div class="fan-text-info">
-                <div class="ticket-label-small">MANIFET PASSENGER</div>
-                <div class="fan-nickname" id="cardNickname"></div>
-                <span class="ticket-tier-display" id="cardTierBadge"></span>
+              
+              <div class="fan-meta-col">
+                <div class="field-caption">PASSENGER NAME</div>
+                <div class="fan-nickname-display" id="cardNickname"></div>
+                <div class="field-caption" style="margin-top:4px;">TARGET TIER</div>
+                <span class="tier-badge-card" id="cardTierBadge">WINTER TIER</span>
               </div>
             </div>
 
-            <div class="fan-message-wrap" id="cardMessage">
-            
+            <div class="message-container" id="messageContainer">
+              <div class="field-caption" style="margin-bottom: 4px;">TRANSMISSION MESSAGE</div>
+              <div class="message-text" id="cardMessage"></div>
             </div>
           </div>
 
-          <div class="ticket-footer">
-            <div class="venue-info">
+          <!-- FOOTER PASS -->
+          <div class="ticket-bottom">
+            <div class="venue-block">
               <div class="venue-date">22.11.2026</div>
-              <div class="venue-place">SÂN KHẤU C30, TP.HCM</div>
+              <div class="venue-title">SÂN KHẤU C30, TP.HCM</div>
+              <div class="venue-sub">141 BẮC HẢI, DIÊN HỒNG</div>
             </div>
 
-            <div class="ticket-code">
-              <div class="barcode">
-                <div class="barcode-line" style="height: 90%;"></div>
-                <div class="barcode-line" style="width: 4px; height: 100%;"></div>
-                <div class="barcode-line" style="height: 70%;"></div>
-                <div class="barcode-line" style="width: 3px; height: 95%;"></div>
+            <div class="security-block">
+              <div class="barcode-bars">
+                <div class="barcode-line" style="height: 100%;"></div>
+                <div class="barcode-line" style="width: 3px; height: 100%;"></div>
                 <div class="barcode-line" style="height: 60%;"></div>
-                <div class="barcode-line" style="width: 5px; height: 100%;"></div>
-                <div class="barcode-line" style="height: 85%;"></div>
+                <div class="barcode-line" style="width: 4px; height: 90%;"></div>
+                <div class="barcode-line" style="height: 40%;"></div>
+                <div class="barcode-line" style="width: 2px; height: 100%;"></div>
+                <div class="barcode-line" style="height: 75%;"></div>
+                <div class="barcode-line" style="width: 3px; height: 100%;"></div>
               </div>
-              <div class="barcode-code" id="cardSerial"></div>
+              <div class="serial-tag" id="cardSerial">MNF-2026-VIP</div>
             </div>
           </div>
 
@@ -544,18 +683,18 @@
       </div>
 
       <button class="download-btn" onclick="downloadImage()">
-        📥 TẢI THẺ VỀ
+        XUẤT THẺ VIP PASS (PNG)
       </button>
     </div>
 
   </div>
 
   <script>
-    const tierColors = {
-      WINTER: { bg: 'linear-gradient(135deg, #58a6ff, #a8d4ff)', text: '#000', glow: 'rgba(88, 166, 255, 0.6)', icon: '❄️' },
-      AUTUMN: { bg: 'linear-gradient(135deg, #ffd214, #ffea79)', text: '#000', glow: 'rgba(255, 210, 20, 0.6)', icon: '🍂' },
-      SUMMER: { bg: 'linear-gradient(135deg, #20dfa7, #8effd8)', text: '#000', glow: 'rgba(32, 223, 167, 0.6)', icon: '☀️' },
-      SPRING: { bg: 'linear-gradient(135deg, #ff3377, #ff99bb)', text: '#fff', glow: 'rgba(255, 51, 119, 0.6)', icon: '🌸' }
+    const tierConfigMap = {
+      WINTER: { color: 'var(--c-winter)', glow: 'rgba(100, 181, 246, 0.45)', text: 'WINTER TIER' },
+      AUTUMN: { color: 'var(--c-autumn)', glow: 'rgba(255, 213, 79, 0.45)', text: 'AUTUMN TIER' },
+      SUMMER: { color: 'var(--c-summer)', glow: 'rgba(77, 208, 225, 0.45)', text: 'SUMMER TIER' },
+      SPRING: { color: 'var(--c-spring)', glow: 'rgba(255, 64, 129, 0.45)', text: 'SPRING TIER' }
     };
 
     function handleAvatar(event) {
@@ -571,22 +710,34 @@
     }
 
     function updatePreview() {
-      const nick = document.getElementById('inputNickname').value.trim() || 'CHIẾN THẦN MNF';
-      const msg = document.getElementById('inputMessage').value.trim() || 'Hẹn gặp Captain Boy 22.11!';
+      const nick = document.getElementById('inputNickname').value.trim();
+      const msg = document.getElementById('inputMessage').value.trim();
       const selectedTier = document.querySelector('input[name="tier"]:checked').value;
 
+      // Cập nhật fanname (nếu trống thì để trống)
       document.getElementById('cardNickname').innerText = nick;
-      document.getElementById('cardMessage').innerText = `"${msg}"`;
 
+      // Hộp lời nhắn: Chỉ hiển thị khi có nhập chữ
+      const msgContainer = document.getElementById('messageContainer');
+      const msgElement = document.getElementById('cardMessage');
+      if (msg) {
+        msgContainer.style.display = 'block';
+        msgElement.innerText = `"${msg}"`;
+      } else {
+        msgContainer.style.display = 'none';
+        msgElement.innerText = '';
+      }
+
+      // Cập nhật hạng vé
+      const tierData = tierConfigMap[selectedTier];
       const badge = document.getElementById('cardTierBadge');
-      const tierConfig = tierColors[selectedTier];
-      badge.style.background = tierConfig.bg;
-      badge.style.color = tierConfig.text;
-      badge.style.boxShadow = `0 0 12px ${tierConfig.glow}`;
-      badge.innerText = `${tierConfig.icon} MỤC TIÊU: ${selectedTier}`;
+      badge.style.background = tierData.color;
+      badge.style.boxShadow = `0 0 14px ${tierData.glow}`;
+      badge.innerText = tierData.text;
 
-      const randCode = Math.floor(100 + Math.random() * 900);
-      document.getElementById('cardSerial').innerText = `MNF-26-${randCode}`;
+      // Sinh mã serial bảo mật ngẫu nhiên
+      const randDigits = Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('cardSerial').innerText = `MNF-26-${selectedTier.substring(0,2)}-${randDigits}`;
     }
 
     document.getElementById('inputNickname').addEventListener('input', updatePreview);
@@ -595,7 +746,7 @@
 
     function downloadImage() {
       const ticketElement = document.getElementById('ticket-wrapper');
-      const nickname = document.getElementById('inputNickname').value.trim() || 'MNF';
+      const nickname = document.getElementById('inputNickname').value.trim() || 'MANIFET';
       
       const originalRadius = ticketElement.style.borderRadius;
       ticketElement.style.borderRadius = '0px';
@@ -607,12 +758,13 @@
       }).then(canvas => {
         ticketElement.style.borderRadius = originalRadius;
         const link = document.createElement('a');
-        link.download = `THE_MNF_GIAT_VE_${nickname.toUpperCase().replace(/\s+/g, '_')}.png`;
+        link.download = `VIP_PASS_${nickname.toUpperCase().replace(/\s+/g, '_')}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
       });
     }
 
+    // Khởi tạo trạng thái ban đầu sạch
     updatePreview();
   </script>
 </body>
