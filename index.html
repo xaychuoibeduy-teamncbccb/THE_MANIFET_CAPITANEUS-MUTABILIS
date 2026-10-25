@@ -612,7 +612,7 @@
     }
 
     .btn-video-export:disabled {
-      opacity: 0.6;
+      opacity: 0.8;
       cursor: not-allowed;
       transform: none;
     }
@@ -661,7 +661,7 @@
 
   <div class="header-logo">
     <h1 class="main-title">CAPITANEUS<br>MUTABILIS</h1>
-    <div class="sub-title">MANIFET SĂN VÉ THÀNH CÔNG</div>
+    <div class="sub-title">MANIFET 3D VIP STUDIO</div>
   </div>
 
   <div class="container">
@@ -670,7 +670,7 @@
     <div class="form-box">
       <div class="form-box-header">
         <h3>THÔNG TIN MANIFET</h3>
-        <span class="sys-code">CỪU CÓ CÁNH</span>
+        <span class="sys-code">3D STUDIO</span>
       </div>
 
       <div class="form-group">
@@ -796,7 +796,7 @@
       <!-- CÁC NÚT XUẤT VIDEO & ẢNH -->
       <div class="btn-actions-wrap">
         <button class="btn-video-export" id="btnVideo" onclick="exportSpinningVideo()">
-          XUẤT VIDEO XOAY 3D
+          XUẤT VIDEO XOAY 3D (5S)
         </button>
 
         <div class="image-sub-actions">
@@ -908,7 +908,6 @@
         lastModified: Date.now() 
       });
 
-      // Nếu trên điện thoại hỗ trợ Share -> gọi thẳng bảng lưu Photos của iOS / Android
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         try {
           await navigator.share({
@@ -921,7 +920,6 @@
         }
       }
 
-      // Tự động tải file trực tiếp (PC & Android)
       const a = document.createElement('a');
       a.href = generatedVideoUrl;
       a.download = generatedFileName;
@@ -930,14 +928,13 @@
       a.click();
       setTimeout(() => document.body.removeChild(a), 300);
 
-      // Dự phòng riêng cho Safari iOS nếu bị chặn tải ngầm
       if (isIOS) {
         window.open(generatedVideoUrl, '_blank');
       }
     }
 
     // ========================================================
-    // QUAY VIDEO 3D & TỰ ĐỘNG TẢI NGAY KHI XONG
+    // QUAY VIDEO 3D CHUẨN ĐÚNG 5 GIÂY (CHẬM & MƯỢT MÀ)
     // ========================================================
     async function exportSpinningVideo() {
       const btn = document.getElementById('btnVideo');
@@ -962,8 +959,6 @@
         const imgBack = new Image();
         imgBack.src = canvasBack.toDataURL('image/png');
         await new Promise(r => imgBack.onload = r);
-
-        btn.innerText = 'ĐANG TẠO VIDEO 3D...';
 
         const canvas = document.getElementById('renderCanvas');
         const ctx = canvas.getContext('2d');
@@ -1013,22 +1008,30 @@
           btn.innerText = 'TẢI / LƯU LẠI VIDEO';
           btn.onclick = directSaveVideo;
 
-          // Tự động gọi lưu/tải ngay lập tức (KHÔNG HIỆN POPUP)
           await directSaveVideo();
         };
 
         recorder.start();
 
-        const totalFrames = 120; // 4 giây xoay mượt mà
-        let currentFrame = 0;
+        // ĐO THỜI GIAN THẬT CHUẨN ĐÚNG 5000MS (5 GIÂY)
+        const duration = 5000;
+        let startTime = null;
 
-        function renderFrame() {
-          if (currentFrame >= totalFrames) {
+        function renderFrame(timestamp) {
+          if (!startTime) startTime = timestamp;
+          const elapsed = timestamp - startTime;
+
+          // Hiển thị đếm ngược trực tiếp trên nút bấm
+          const secLeft = Math.max(0, Math.ceil((duration - elapsed) / 1000));
+          btn.innerText = `ĐANG TẠO VIDEO... (${secLeft}S)`;
+
+          if (elapsed >= duration) {
             recorder.stop();
             return;
           }
 
-          const progress = currentFrame / totalFrames;
+          // Tiến độ từ 0.0 -> 1.0 trong đúng 5 giây
+          const progress = Math.min(elapsed / duration, 1);
           const angle = progress * (Math.PI * 2);
           const cos = Math.cos(angle);
           const isFront = cos >= 0;
@@ -1071,7 +1074,7 @@
             ctx.fillStyle = glareGrad;
             ctx.fillRect(-cardW / 2, -cardH / 2, cardW, cardH);
           } else {
-            // ĐÃ BỎ LẬT SCALE -> Poster hiển thị đúng chiều chữ 100%
+            // Hiển thị mặt sau đúng chiều chữ 100%
             ctx.drawImage(imgBack, -cardW / 2, -cardH / 2, cardW, cardH);
 
             const glareGrad = ctx.createLinearGradient(-cardW / 2, -cardH / 2, cardW / 2, cardH / 2);
@@ -1084,17 +1087,16 @@
 
           ctx.restore();
 
-          currentFrame++;
           requestAnimationFrame(renderFrame);
         }
 
-        renderFrame();
+        requestAnimationFrame(renderFrame);
 
       } catch (err) {
         console.error(err);
         alert('Vui lòng mở trang web bằng Safari (trên iPhone) hoặc Chrome (trên Android) ngoài để xuất video nhé!');
         btn.disabled = false;
-        btn.innerText = 'XUẤT VIDEO XOAY 3D';
+        btn.innerText = 'XUẤT VIDEO XOAY 3D (5S)';
       }
     }
 
