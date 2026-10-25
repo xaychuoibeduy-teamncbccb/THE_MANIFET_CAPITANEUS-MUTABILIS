@@ -39,7 +39,6 @@
       padding: 16px 12px 70px;
     }
 
-    /* Thanh cảnh báo in-app browser */
     #inAppWarning {
       display: none;
       width: 100%;
@@ -646,9 +645,7 @@
 
     #renderCanvas { display: none; }
 
-    /* =========================================
-       MODAL XEM TRƯỚC VÀ LƯU VIDEO TRÊN MOBILE
-       ========================================= */
+    /* MODAL XEM TRƯỚC VÀ LƯU VIDEO */
     #videoModal {
       display: none;
       position: fixed;
@@ -770,13 +767,13 @@
 
   <!-- CẢNH BÁO NẾU ĐANG TRONG APP FACEBOOK / ZALO -->
   <div id="inAppWarning">
-    ⚠️ BẠN ĐANG MỞ TRONG FACEBOOK / ZALO NÊN KHÔNG LƯU ĐƯỢC VIDEO.<br>
-    HÃY BẤM DẤU (⋮) HOẶC (⋯) Ở GÓC TRÊN CÙNG BÊN PHẢI RỒI CHỌN <b>"MỞ BẰNG TRÌNH DUYỆT NGOÀI" (SAFARI / CHROME)</b> NHÉ!
+    ⚠️ BẠN ĐANG MỞ TRONG TRÌNH DUYỆT ẨN (FACEBOOK / ZALO / TIKTOK).<br>
+    HÃY BẤM DẤU (⋮) HOẶC (⋯) Ở GÓC TRÊN RỒI CHỌN <b>"MỞ BẰNG TRÌNH DUYỆT NGOÀI" (SAFARI / CHROME)</b> ĐỂ TẢI VIDEO XUỐNG ĐIỆN THOẠI NHÉ!
   </div>
 
   <div class="header-logo">
     <h1 class="main-title">CAPITANEUS<br>MUTABILIS</h1>
-    <div class="sub-title">MANIFET 3D VIP STUDIO</div>
+    <div class="sub-title">MANIFET SĂN VÉ THÀNH CÔNG/div>
   </div>
 
   <div class="container">
@@ -785,7 +782,7 @@
     <div class="form-box">
       <div class="form-box-header">
         <h3>THÔNG TIN MANIFET</h3>
-        <span class="sys-code">3D STUDIO</span>
+        <span class="sys-code">CỪU CÓ CÁNH</span>
       </div>
 
       <div class="form-group">
@@ -899,7 +896,7 @@
             </div>
           </div>
 
-          <!-- MẶT SAU (CỐ ĐỊNH POSTER.JPG) -->
+          <!-- MẶT SAU -->
           <div class="pass-card" id="back-pass">
             <div class="back-lanyard"></div>
             <img class="poster-img" id="cardPoster" src="poster.jpg" alt="Poster Captain Boy">
@@ -941,12 +938,12 @@
       </div>
 
       <div class="modal-tip">
-        Mẹo cho điện thoại: Bấm nút <b>"LƯU VÀO ĐIỆN THOẠI"</b> bên dưới (hoặc <b>nhấn giữ ngón tay vào video 2 giây</b> rồi chọn <i>"Lưu video" / "Tải xuống"</i>).
+        Bấm nút <b>"LƯU VÀO THƯ VIỆN ẢNH"</b> bên dưới để lưu trực tiếp video vào album ảnh của điện thoại.
       </div>
 
       <div class="modal-btn-group">
         <button class="btn-modal-action btn-modal-primary" id="btnModalShare" onclick="triggerNativeShare()">
-          LƯU VÀO ĐIỆN THOẠI (PHOTOS)
+          LƯU VÀO THƯ VIỆN ẢNH (PHOTOS)
         </button>
         <button class="btn-modal-action btn-modal-secondary" id="btnModalDirect" onclick="triggerDirectDownload()">
           TẢI TRỰC TIẾP FILE
@@ -956,9 +953,9 @@
   </div>
 
   <script>
-    // Phát hiện trình duyệt In-app (Facebook, Zalo, Messenger, TikTok)
+    // Nhận diện trình duyệt trong ứng dụng (In-app browser)
     const ua = navigator.userAgent || navigator.vendor || window.opera;
-    const isInApp = (ua.indexOf('FBAN') > -1) || (ua.indexOf('FBAV') > -1) || (ua.indexOf('Instagram') > -1) || (ua.indexOf('Zalo') > -1) || (ua.indexOf('Line') > -1) || (ua.indexOf('Messenger') > -1);
+    const isInApp = /FBAN|FBAV|Instagram|Zalo|Line|Messenger|musical_ly|ByteLocale/i.test(ua);
     if (isInApp) {
       document.getElementById('inAppWarning').style.display = 'block';
     }
@@ -973,6 +970,7 @@
     let generatedVideoBlob = null;
     let generatedVideoUrl = null;
     let generatedFileName = '';
+    let generatedMimeType = 'video/mp4';
 
     function toggleFlip() {
       document.getElementById('cardFlipper').classList.toggle('flipped');
@@ -1037,13 +1035,13 @@
     }
 
     // ========================================================
-    // QUAY VIDEO VÀ BẬT HỘP THOẠI LƯU THÂN THIỆN VỚI ĐIỆN THOẠI
+    // QUAY VIDEO 3D TỐI ƯU HOÀN TOÀN CHO ĐIỆN THOẠI
     // ========================================================
     async function exportSpinningVideo() {
       const btn = document.getElementById('btnVideo');
       const originalBtnText = btn.innerText;
       btn.disabled = true;
-      btn.innerText = 'ĐANG XỬ LÝ ĐỘ NÉT 2 MẶT...';
+      btn.innerText = 'ĐANG XỬ LÝ ẢNH 2 MẶT...';
 
       const nickname = document.getElementById('inputNickname').value.trim() || 'MANIFET';
       const frontEl = document.getElementById('front-pass');
@@ -1053,8 +1051,8 @@
       flipper.classList.remove('flipped');
 
       try {
-        const canvasFront = await html2canvas(frontEl, { scale: 2.2, backgroundColor: null, useCORS: true });
-        const canvasBack = await html2canvas(backEl, { scale: 2.2, backgroundColor: null, useCORS: true });
+        const canvasFront = await html2canvas(frontEl, { scale: 2, backgroundColor: null, useCORS: true });
+        const canvasBack = await html2canvas(backEl, { scale: 2, backgroundColor: null, useCORS: true });
 
         const imgFront = new Image();
         imgFront.src = canvasFront.toDataURL('image/png');
@@ -1064,7 +1062,7 @@
         imgBack.src = canvasBack.toDataURL('image/png');
         await new Promise(r => imgBack.onload = r);
 
-        btn.innerText = 'ĐANG QUAY VIDEO 5 GIÂY...';
+        btn.innerText = 'ĐANG TẠO VIDEO 3D...';
 
         const canvas = document.getElementById('renderCanvas');
         const ctx = canvas.getContext('2d');
@@ -1074,39 +1072,44 @@
         const cx = W / 2;
         const cy = H / 2;
 
-        const stream = canvas.captureStream(60);
-        
-        // Hỗ trợ định dạng tương thích điện thoại tốt nhất
-        let mime = '';
-        const possibleTypes = [
-          'video/mp4;codecs=avc1',
+        // 30 FPS giúp video nhẹ và không làm crash GPU Safari/Chrome điện thoại
+        const stream = canvas.captureStream(30);
+
+        // Chuẩn hóa định dạng tương thích điện thoại
+        const possibleMimes = [
           'video/mp4',
+          'video/mp4;codecs=avc1',
           'video/webm;codecs=vp9',
           'video/webm;codecs=vp8',
           'video/webm'
         ];
-        for (const t of possibleTypes) {
-          if (MediaRecorder.isTypeSupported(t)) {
-            mime = t;
+        let chosenMime = '';
+        for (const t of possibleMimes) {
+          if (typeof MediaRecorder !== 'undefined' && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) {
+            chosenMime = t;
             break;
           }
         }
 
+        const isMp4 = chosenMime.includes('mp4') || (!chosenMime.includes('webm') && /iPhone|iPad|iPod/.test(navigator.userAgent));
+        generatedMimeType = isMp4 ? 'video/mp4' : 'video/webm';
+        const ext = isMp4 ? 'mp4' : 'webm';
+
         const recorder = new MediaRecorder(stream, { 
-          mimeType: mime || undefined, 
-          videoBitsPerSecond: 8000000 
+          mimeType: chosenMime || undefined, 
+          videoBitsPerSecond: 4500000 
         });
 
         const chunks = [];
-        recorder.ondataavailable = e => chunks.push(e.data);
+        recorder.ondataavailable = e => {
+          if (e.data && e.data.size > 0) chunks.push(e.data);
+        };
         
         recorder.onstop = () => {
-          const ext = (mime && mime.includes('mp4')) ? 'mp4' : 'webm';
-          generatedVideoBlob = new Blob(chunks, { type: mime || 'video/mp4' });
+          generatedVideoBlob = new Blob(chunks, { type: generatedMimeType });
           generatedVideoUrl = URL.createObjectURL(generatedVideoBlob);
           generatedFileName = `VIDEO_PASS_3D_${nickname.toUpperCase().replace(/\s+/g, '_')}.${ext}`;
 
-          // Hiển thị Modal xem trước & lưu cho điện thoại
           const player = document.getElementById('modalVideoPlayer');
           player.src = generatedVideoUrl;
           player.play();
@@ -1119,7 +1122,8 @@
 
         recorder.start();
 
-        const totalFrames = 300; // 5 giây (60fps)
+        // 150 frames ở 30fps = 5 giây
+        const totalFrames = 150;
         let currentFrame = 0;
 
         function renderFrame() {
@@ -1133,7 +1137,7 @@
           const cos = Math.cos(angle);
           const isFront = cos >= 0;
 
-          // Nền không gian bốc lửa
+          // Nền không gian
           ctx.fillStyle = '#08080a';
           ctx.fillRect(0, 0, W, H);
 
@@ -1144,7 +1148,7 @@
           ctx.fillStyle = bgGrad;
           ctx.fillRect(0, 0, W, H);
 
-          // Bóng đổ động 3D
+          // Bóng đổ động
           ctx.save();
           const shadowWidth = Math.max(20, Math.abs(cos) * cardW * 0.95);
           ctx.beginPath();
@@ -1154,7 +1158,7 @@
           ctx.fill();
           ctx.restore();
 
-          // Vẽ thẻ 3D xoay
+          // Vẽ thẻ xoay 3D
           ctx.save();
           ctx.translate(cx, cy);
 
@@ -1192,45 +1196,62 @@
 
       } catch (err) {
         console.error(err);
-        alert('Lỗi: Trình duyệt không hỗ trợ quay video trên thiết bị này. Vui lòng mở bằng Safari hoặc Chrome ngoài!');
+        alert('Thiết bị hoặc trình duyệt hiện tại bị chặn quay video. Vui lòng mở bằng Safari (trên iPhone) hoặc Chrome (trên Android) ngoài!');
         btn.disabled = false;
         btn.innerText = originalBtnText;
       }
     }
 
     // ============================================
-    // CÁC HÀM XỬ LÝ LƯU VIDEO TRÊN ĐIỆN THOẠI
+    // CƠ CHẾ LƯU VIDEO CHUẨN XÁC TRÊN ĐIỆN THOẠI
     // ============================================
-
-    // Kích hoạt Menu chia sẻ / Lưu vào Photos của iPhone/Android
     async function triggerNativeShare() {
       if (!generatedVideoBlob) return;
+      
       try {
-        const file = new File([generatedVideoBlob], generatedFileName, { type: generatedVideoBlob.type });
+        // Chuẩn hoá File với MIME sạch (video/mp4) để iPhone và Android nhận diện đúng
+        const file = new File([generatedVideoBlob], generatedFileName, { 
+          type: generatedMimeType, 
+          lastModified: Date.now() 
+        });
+
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
             files: [file],
-            title: 'CAPITANEUS MUTABILIS VIP PASS',
-            text: 'Thẻ VIP 3D Captain Boy FMT!'
+            title: 'VIP PASS 3D CAPTAIN BOY',
+            text: 'Thẻ VIP 3D Captain Boy FMT'
           });
-        } else {
-          triggerDirectDownload();
+          return;
         }
       } catch (e) {
-        // Nếu người dùng ấn hủy share hoặc share không hỗ trợ, dùng tải trực tiếp
-        triggerDirectDownload();
+        if (e.name === 'AbortError') return; // Người dùng chủ động đóng hộp thoại share
+        console.warn('Lỗi chia sẻ:', e);
       }
+
+      // Nếu không hỗ trợ chia sẻ qua hệ thống, chuyển sang tải trực tiếp
+      triggerDirectDownload();
     }
 
-    // Tải trực tiếp file bằng thẻ A
     function triggerDirectDownload() {
       if (!generatedVideoUrl) return;
+
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+      // Riêng trên iPhone nếu không tải được qua Web Share thì mở trực tiếp tab video
+      if (isIOS) {
+        window.open(generatedVideoUrl, '_blank');
+        return;
+      }
+
       const a = document.createElement('a');
       a.href = generatedVideoUrl;
       a.download = generatedFileName;
+      a.target = '_blank';
       document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
+      setTimeout(() => {
+        document.body.removeChild(a);
+      }, 300);
     }
 
     function closeModal() {
