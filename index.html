@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MNF PASS - SẴN SÀNG GIẬT VÉ CAPTAIN BOY</title>
+  
+  <!-- Font chữ Sci-fi & Metallic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Montserrat:ital,wght@0,700;0,900;1,700&family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    :root {
+      --bg-yellow: #f8db00;
+      --c-winter: #58a6ff;
+      --c-autumn: #ffd214;
+      --c-summer: #20dfa7;
+      --c-spring: #ff3377;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-yellow);
+      background-image: 
+        radial-gradient(circle at 50% 15%, rgba(255, 120, 0, 0.45) 0%, rgba(248, 219, 0, 0) 55%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 8px);
+      font-family: 'Be Vietnam Pro', sans-serif;
+      color: #111;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 12px 50px;
+    }
+
+    .header-logo {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .main-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 5.5vw, 3.2rem);
+      font-weight: 900;
+      color: #111;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1.05;
+      text-shadow: 2px 2px 0px #fff, 4px 4px 0px rgba(0,0,0,0.2);
+    }
+
+    .sub-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #000;
+      background: #fff;
+      display: inline-block;
+      padding: 4px 14px;
+      margin-top: 8px;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      box-shadow: 3px 3px 0px #000;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 950px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      align-items: flex-start;
+    }
+
+    /* FORM NHẬP THÔNG TIN */
+    .form-box {
+      flex: 1;
+      min-width: 310px;
+      max-width: 420px;
+      background: #111114;
+      border: 2px solid #282828;
+      border-radius: 12px;
+      padding: 22px;
+      color: #fff;
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.3);
+    }
+
+    .form-box h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      margin-bottom: 15px;
+      color: var(--bg-yellow);
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 11px 12px;
+      background: #1e1e24;
+      border: 1.5px solid #3d3d4a;
+      border-radius: 6px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--bg-yellow);
+    }
+
+    /* Upload Avatar */
+    .file-upload-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .file-btn {
+      background: #252530;
+      padding: 9px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #444;
+      color: #ddd;
+      transition: 0.2s;
+    }
+    .file-btn:hover {
+      background: #323240;
+      border-color: #777;
+    }
+
+    /* Chọn Hạng Vé Mục Tiêu */
+    .tier-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .tier-btn input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .tier-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px;
+      border-radius: 6px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      border: 2px solid transparent;
+      color: #fff;
+      transition: all 0.2s;
+    }
+
+    .tier-winter .tier-label { background: #1a2a40; border-color: var(--c-winter); color: var(--c-winter); }
+    .tier-autumn .tier-label { background: #3c3400; border-color: var(--c-autumn); color: var(--c-autumn); }
+    .tier-summer .tier-label { background: #00372d; border-color: var(--c-summer); color: var(--c-summer); }
+    .tier-spring .tier-label { background: #3d0a1e; border-color: var(--c-spring); color: var(--c-spring); }
+
+    .tier-btn input[type="radio"]:checked + .tier-label {
+      transform: scale(1.02);
+      color: #000;
+    }
+    .tier-winter input[type="radio"]:checked + .tier-label { background: var(--c-winter); }
+    .tier-autumn input[type="radio"]:checked + .tier-label { background: var(--c-autumn); }
+    .tier-summer input[type="radio"]:checked + .tier-label { background: var(--c-summer); }
+    .tier-spring input[type="radio"]:checked + .tier-label { background: var(--c-spring); }
+
+    /* PREVIEW THẺ (CONCERT VIP PASS) */
+    .preview-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #ticket-wrapper {
+      width: 360px;
+      height: 640px;
+      background: #0d0d10;
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      border: 2px solid #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ticket-bg {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,140,0,0.85) 0%, rgba(255,80,0,0.2) 55%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(20px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .ticket-inner {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+    }
+
+    /* Lỗ đeo thẻ concert */
+    .lanyard-hole {
+      width: 50px;
+      height: 7px;
+      background: #000;
+      border: 1.5px solid #444;
+      border-radius: 10px;
+      margin: 0 auto 12px;
+    }
+
+    .ticket-header {
+      text-align: center;
+    }
+
+    .event-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--bg-yellow);
+      text-transform: uppercase;
+    }
+
+    .ticket-event-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(180deg, #ffffff 0%, #d0d0d0 50%, #777 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+      margin: 5px 0 8px;
+    }
+
+    /* Tag Sẵn Sàng Giật Vé cố định */
+    .status-badge-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1.5px solid var(--bg-yellow);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: var(--bg-yellow);
+      letter-spacing: 1.5px;
+      box-shadow: 0 0 12px rgba(248, 219, 0, 0.35);
+    }
+
+    /* Fan Info Section */
+    .ticket-middle {
+      background: rgba(20, 20, 25, 0.75);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 16px 14px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .avatar-frame {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      border: 2px solid var(--bg-yellow);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #25252d;
+    }
+
+    .avatar-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .fan-text-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .ticket-label-small {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #888;
+    }
+
+    .fan-nickname {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 2px 0 6px;
+    }
+
+    .ticket-tier-display {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: #000;
+      background: var(--c-winter);
+      box-shadow: 0 0 12px rgba(88, 166, 255, 0.5);
+    }
+
+    /* Lời chúc / Quyết tâm */
+    .fan-message-wrap {
+      background: rgba(0, 0, 0, 0.45);
+      border-left: 3px solid var(--bg-yellow);
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: #ddd;
+      margin-top: 10px;
+      min-height: 48px;
+      max-height: 60px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    /* Chân vé */
+    .ticket-footer {
+      border-top: 1px dashed rgba(255, 255, 255, 0.2);
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .venue-date {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 900;
+      color: var(--bg-yellow);
+    }
+
+    .venue-place {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #aaa;
+    }
+
+    .barcode {
+      display: flex;
+      gap: 2.5px;
+      height: 24px;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+    .barcode-line { width: 2px; background: #fff; height: 100%; }
+    .barcode-code {
+      font-family: monospace;
+      font-size: 0.6rem;
+      color: #777;
+      text-align: right;
+      margin-top: 3px;
+    }
+
+    .download-btn {
+      margin-top: 14px;
+      background: #111;
+      color: #fff;
+      border: 2px solid #000;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
+    }
+    .download-btn:hover {
+      background: #2a2a30;
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 800px) {
+      .container { flex-direction: column; align-items: center; }
+      .form-box, #ticket-wrapper { width: 100%; max-width: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-logo">
+    <h1 class="main-title">CAPITANEUS<br>MUTABILIS</h1>
+    <div class="sub-title">MANIFET SẴN SÀNG GIẬT VÉ</div>
+  </div>
+
+  <div class="container">
+    
+    <!-- KHỐI NHẬP LIỆU -->
+    <div class="form-box">
+      <h3>⚡ THÔNG TIN CHIẾN THẦN</h3>
+
+      <div class="form-group">
+        <label>Fanname / Biệt danh:</label>
+        <input type="text" id="inputNickname" placeholder="VD: Cừu Có Cánh...">
+      </div>
+
+      <div class="form-group">
+        <label>Tải ảnh đại diện (Tùy chọn):</label>
+        <div class="file-upload-wrap">
+          <label class="file-btn" for="avatarInput">📁 Chọn ảnh từ máy</label>
+          <input type="file" id="avatarInput" accept="image/*" style="display:none;" onchange="handleAvatar(event)">
+          <span id="fileName" style="font-size: 0.75rem; color:#888;">Chưa chọn ảnh</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Mục tiêu hạng vé giật ngày 26/10:</label>
+        <div class="tier-options">
+          <label class="tier-btn tier-winter">
+            <input type="radio" name="tier" value="WINTER" checked>
+            <span class="tier-label">❄️ WINTER</span>
+          </label>
+          <label class="tier-btn tier-autumn">
+            <input type="radio" name="tier" value="AUTUMN">
+            <span class="tier-label">🍂 AUTUMN</span>
+          </label>
+          <label class="tier-btn tier-summer">
+            <input type="radio" name="tier" value="SUMMER">
+            <span class="tier-label">☀️ SUMMER</span>
+          </label>
+          <label class="tier-btn tier-spring">
+            <input type="radio" name="tier" value="SPRING">
+            <span class="tier-label">🌸 SPRING</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Lời nhắn đến CAPTAIN BOY:</label>
+        <textarea id="inputMessage" rows="2" placeholder="Gửi gắm quyết tâm..."></textarea>
+      </div>
+    </div>
+
+    <!-- KHỐI XEM TRƯỚC THẺ -->
+    <div class="preview-area">
+      <div id="ticket-wrapper">
+        <div class="ticket-bg"></div>
+        <div class="ticket-inner">
+          
+          <div class="ticket-header">
+            <div class="lanyard-hole"></div>
+            <div class="event-tag">CAPTAIN BOY FAN MEETING 2026</div>
+            <div class="ticket-event-name">CAPITANEUS<br>MUTABILIS</div>
+            <div class="status-badge-card">🎯 SẴN SÀNG GIẬT VÉ</div>
+          </div>
+
+          <div>
+            <div class="ticket-middle">
+              <div class="avatar-frame">
+                <img id="cardAvatar" src="anh.png" alt="Avatar">
+              </div>
+              <div class="fan-text-info">
+                <div class="ticket-label-small">MANIFET PASSENGER</div>
+                <div class="fan-nickname" id="cardNickname"></div>
+                <span class="ticket-tier-display" id="cardTierBadge"></span>
+              </div>
+            </div>
+
+            <div class="fan-message-wrap" id="cardMessage">
+            
+            </div>
+          </div>
+
+          <div class="ticket-footer">
+            <div class="venue-info">
+              <div class="venue-date">22.11.2026</div>
+              <div class="venue-place">SÂN KHẤU C30, TP.HCM</div>
+            </div>
+
+            <div class="ticket-code">
+              <div class="barcode">
+                <div class="barcode-line" style="height: 90%;"></div>
+                <div class="barcode-line" style="width: 4px; height: 100%;"></div>
+                <div class="barcode-line" style="height: 70%;"></div>
+                <div class="barcode-line" style="width: 3px; height: 95%;"></div>
+                <div class="barcode-line" style="height: 60%;"></div>
+                <div class="barcode-line" style="width: 5px; height: 100%;"></div>
+                <div class="barcode-line" style="height: 85%;"></div>
+              </div>
+              <div class="barcode-code" id="cardSerial"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="download-btn" onclick="downloadImage()">
+        📥 TẢI THẺ VỀ
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    const tierColors = {
+      WINTER: { bg: 'linear-gradient(135deg, #58a6ff, #a8d4ff)', text: '#000', glow: 'rgba(88, 166, 255, 0.6)', icon: '❄️' },
+      AUTUMN: { bg: 'linear-gradient(135deg, #ffd214, #ffea79)', text: '#000', glow: 'rgba(255, 210, 20, 0.6)', icon: '🍂' },
+      SUMMER: { bg: 'linear-gradient(135deg, #20dfa7, #8effd8)', text: '#000', glow: 'rgba(32, 223, 167, 0.6)', icon: '☀️' },
+      SPRING: { bg: 'linear-gradient(135deg, #ff3377, #ff99bb)', text: '#fff', glow: 'rgba(255, 51, 119, 0.6)', icon: '🌸' }
+    };
+
+    function handleAvatar(event) {
+      const file = event.target.files[0];
+      if (file) {
+        document.getElementById('fileName').innerText = file.name;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('cardAvatar').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function updatePreview() {
+      const nick = document.getElementById('inputNickname').value.trim() || 'CHIẾN THẦN MNF';
+      const msg = document.getElementById('inputMessage').value.trim() || 'Hẹn gặp Captain Boy 22.11!';
+      const selectedTier = document.querySelector('input[name="tier"]:checked').value;
+
+      document.getElementById('cardNickname').innerText = nick;
+      document.getElementById('cardMessage').innerText = `"${msg}"`;
+
+      const badge = document.getElementById('cardTierBadge');
+      const tierConfig = tierColors[selectedTier];
+      badge.style.background = tierConfig.bg;
+      badge.style.color = tierConfig.text;
+      badge.style.boxShadow = `0 0 12px ${tierConfig.glow}`;
+      badge.innerText = `${tierConfig.icon} MỤC TIÊU: ${selectedTier}`;
+
+      const randCode = Math.floor(100 + Math.random() * 900);
+      document.getElementById('cardSerial').innerText = `MNF-26-${randCode}`;
+    }
+
+    document.getElementById('inputNickname').addEventListener('input', updatePreview);
+    document.getElementById('inputMessage').addEventListener('input', updatePreview);
+    document.querySelectorAll('input[name="tier"]').forEach(r => r.addEventListener('change', updatePreview));
+
+    function downloadImage() {
+      const ticketElement = document.getElementById('ticket-wrapper');
+      const nickname = document.getElementById('inputNickname').value.trim() || 'MNF';
+      
+      const originalRadius = ticketElement.style.borderRadius;
+      ticketElement.style.borderRadius = '0px';
+
+      html2canvas(ticketElement, {
+        scale: 3,
+        backgroundColor: null,
+        useCORS: true
+      }).then(canvas => {
+        ticketElement.style.borderRadius = originalRadius;
+        const link = document.createElement('a');
+        link.download = `THE_MNF_GIAT_VE_${nickname.toUpperCase().replace(/\s+/g, '_')}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+
+    updatePreview();
+  </script>
+</body>
+</html>
