@@ -656,7 +656,7 @@
   <!-- CẢNH BÁO TRÌNH DUYỆT ẨN -->
   <div id="inAppWarning">
     ⚠️ BẠN ĐANG MỞ TRONG TRÌNH DUYỆT ẨN (FACEBOOK / ZALO / TIKTOK).<br>
-    HÃY BẤM DẤU (⋮) HOẶC (⋯) Ở GÓC TRÊN RỒI CHỌN <b>"MỞ BẰNG TRÌNH DUYỆT NGOÀI" (SAFARI / CHROME)</b> ĐỂ TẢI VIDEO XUỐNG ĐIỆN THOẠI NHÉ!
+    HÃY BẤM DẤU (⋮) HOẶC (⋯) Ở GÓC TRÊN RỒI CHỌN <b>"MỞ BẰNG TRÌNH DUYỆT NGOÀI" (SAFARI / CHROME)</b> ĐỂ TẢI VIDEO XUỐNG NHÉ!
   </div>
 
   <div class="header-logo">
@@ -796,7 +796,7 @@
       <!-- CÁC NÚT XUẤT VIDEO & ẢNH -->
       <div class="btn-actions-wrap">
         <button class="btn-video-export" id="btnVideo" onclick="exportSpinningVideo()">
-          XUẤT VIDEO XOAY 3D (10S)
+          XUẤT VIDEO XOAY 3D (10S CÓ NHẠC)
         </button>
 
         <div class="image-sub-actions">
@@ -934,12 +934,12 @@
     }
 
     // ========================================================
-    // QUAY VIDEO 3D CÓ NHẠC NỀN CHUẨN 10 GIÂY
+    // QUAY VIDEO 3D CÓ NHẠC NỀN CHUẨN ĐÚNG 10 GIÂY
     // ========================================================
     async function exportSpinningVideo() {
       const btn = document.getElementById('btnVideo');
       btn.disabled = true;
-      btn.innerText = 'ĐANG XỬ LÝ ẢNH 2 MẶT...';
+      btn.innerText = 'ĐANG TẢI NHẠC & XỬ LÝ ẢNH...';
 
       const nickname = document.getElementById('inputNickname').value.trim() || 'MANIFET';
       const frontEl = document.getElementById('front-pass');
@@ -949,9 +949,35 @@
       flipper.classList.remove('flipped');
 
       let audioCtx = null;
-      let bgAudio = null;
+      let audioSourceNode = null;
 
       try {
+        // 1. Tải & giải mã sẵn file nhạc musicmnf.mp3 vào bộ nhớ
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') {
+          await audioCtx.resume();
+        }
+
+        let audioTrack = null;
+        try {
+          const res = await fetch('musicmnf.mp3');
+          if (res.ok) {
+            const arrayBuf = await res.arrayBuffer();
+            const decodedBuffer = await audioCtx.decodeAudioData(arrayBuf);
+            
+            const audioDest = audioCtx.createMediaStreamDestination();
+            audioSourceNode = audioCtx.createBufferSource();
+            audioSourceNode.buffer = decodedBuffer;
+            audioSourceNode.loop = true; // Lặp lại nếu bài hát ngắn hơn 10s
+            audioSourceNode.connect(audioDest);
+            
+            audioTrack = audioDest.stream.getAudioTracks()[0];
+          }
+        } catch (audioErr) {
+          console.warn("Không nạp được file musicmnf.mp3, vẫn tiếp tục quay video:", audioErr);
+        }
+
+        // 2. Chụp ảnh 2 mặt thẻ
         const canvasFront = await html2canvas(frontEl, { scale: 2, backgroundColor: null, useCORS: true });
         const canvasBack = await html2canvas(backEl, { scale: 2, backgroundColor: null, useCORS: true });
 
@@ -973,24 +999,7 @@
 
         const videoStream = canvas.captureStream(30);
 
-        // Chuẩn bị âm thanh từ file musicmnf.mp3
-        let audioTrack = null;
-        try {
-          bgAudio = new Audio('musicmnf.mp3');
-          bgAudio.crossOrigin = 'anonymous';
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          if (audioCtx.state === 'suspended') {
-            await audioCtx.resume();
-          }
-          const source = audioCtx.createMediaElementSource(bgAudio);
-          const audioDest = audioCtx.createMediaStreamDestination();
-          source.connect(audioDest);
-          audioTrack = audioDest.stream.getAudioTracks()[0];
-        } catch (e) {
-          console.warn("Lỗi khi nạp file nhạc:", e);
-        }
-
-        // Ghép cả track hình và track nhạc
+        // 3. Ghép luồng Video + Luồng Nhạc vào MediaStream
         const combinedTracks = [...videoStream.getVideoTracks()];
         if (audioTrack) {
           combinedTracks.push(audioTrack);
@@ -1027,9 +1036,8 @@
         };
         
         recorder.onstop = async () => {
-          if (bgAudio) {
-            bgAudio.pause();
-            bgAudio.currentTime = 0;
+          if (audioSourceNode) {
+            try { audioSourceNode.stop(); } catch(e){}
           }
           if (audioCtx && audioCtx.state !== 'closed') {
             audioCtx.close();
@@ -1046,14 +1054,13 @@
           await directSaveVideo();
         };
 
-        // Bắt đầu phát nhạc và quay video
-        if (bgAudio) {
-          bgAudio.currentTime = 0;
-          bgAudio.play().catch(e => console.log('Audio autoplay prevented:', e));
+        // Bắt đầu phát luồng nhạc và khởi động bộ ghi
+        if (audioSourceNode) {
+          audioSourceNode.start(0);
         }
         recorder.start();
 
-        // THỜI LƯỢNG 10 GIÂY (10000MS) - THẺ XOAY TỪ TỐN, CHẬM VÀ MƯỢT
+        // 4. CHUẨN 10 GIÂY (10000MS) - THẺ XOAY TỪ TỐN VÀ MƯỢT
         const duration = 10000;
         let startTime = null;
 
@@ -1065,7 +1072,9 @@
           btn.innerText = `ĐANG TẠO VIDEO CÓ NHẠC... (${secLeft}S)`;
 
           if (elapsed >= duration) {
-            recorder.stop();
+            if (recorder.state === 'recording') {
+              recorder.stop();
+            }
             return;
           }
 
@@ -1074,7 +1083,7 @@
           const cos = Math.cos(angle);
           const isFront = cos >= 0;
 
-          // Nền không gian
+          // Vẽ nền không gian
           ctx.fillStyle = '#08080a';
           ctx.fillRect(0, 0, W, H);
 
@@ -1131,11 +1140,13 @@
 
       } catch (err) {
         console.error(err);
-        if (bgAudio) bgAudio.pause();
+        if (audioSourceNode) {
+          try { audioSourceNode.stop(); } catch(e){}
+        }
         if (audioCtx && audioCtx.state !== 'closed') audioCtx.close();
         alert('Vui lòng mở trang web bằng Safari (trên iPhone) hoặc Chrome (trên Android) ngoài để xuất video nhé!');
         btn.disabled = false;
-        btn.innerText = 'XUẤT VIDEO XOAY 3D (10S)';
+        btn.innerText = 'XUẤT VIDEO XOAY 3D (10S CÓ NHẠC)';
       }
     }
 
