@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAPITANEUS MUTABILIS - VIP ACCESS PASS</title>
+  <title>CAPITANEUS MUTABILIS - MANIFET SĂN VÉ THÀNH CÔNG</title>
   
-  <!-- Font Montserrat chuẩn 100% Tiếng Việt có dấu, phong cách Luxury Concert -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,700&display=swap" rel="stylesheet">
@@ -40,10 +39,7 @@
       padding: 30px 14px 70px;
     }
 
-    .header-logo {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+    .header-logo { text-align: center; margin-bottom: 25px; }
 
     .main-title {
       font-size: clamp(2rem, 5.5vw, 3.6rem);
@@ -70,7 +66,7 @@
 
     .container {
       width: 100%;
-      max-width: 1000px;
+      max-width: 1200px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -82,13 +78,13 @@
     .form-box {
       flex: 1;
       min-width: 320px;
-      max-width: 440px;
+      max-width: 400px;
       background: linear-gradient(160deg, #16161b 0%, #0c0c0f 100%);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
-      padding: 28px 24px;
+      padding: 26px 22px;
       color: #fff;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.65), 0 0 0 1px rgba(0,0,0,0.4);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.65);
     }
 
     .form-box-header {
@@ -101,7 +97,7 @@
     }
 
     .form-box h3 {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 800;
       color: #fff;
       letter-spacing: 1.5px;
@@ -115,9 +111,7 @@
       letter-spacing: 1.5px;
     }
 
-    .form-group {
-      margin-bottom: 18px;
-    }
+    .form-group { margin-bottom: 16px; }
 
     label {
       display: block;
@@ -125,19 +119,19 @@
       font-weight: 700;
       text-transform: uppercase;
       color: #8c8c99;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
       letter-spacing: 1px;
     }
 
     input, textarea {
       width: 100%;
-      padding: 12px 14px;
+      padding: 11px 13px;
       background: #060608;
       border: 1px solid #282832;
       border-radius: 8px;
       color: #fff;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       outline: none;
       transition: all 0.25s ease;
     }
@@ -147,17 +141,16 @@
       box-shadow: 0 0 14px rgba(245, 208, 0, 0.25);
     }
 
-    /* Upload Avatar */
     .file-upload-wrap {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
     .file-btn {
       background: linear-gradient(180deg, #2a2a35 0%, #1a1a22 100%);
-      padding: 10px 16px;
+      padding: 9px 14px;
       border-radius: 8px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -165,6 +158,7 @@
       border: 1px solid rgba(255,255,255,0.15);
       color: #e0e0e0;
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .file-btn:hover {
       background: #343442;
@@ -172,14 +166,13 @@
       border-color: var(--gold-yellow);
     }
     .file-name-text {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #71717f;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    /* Hạng Vé - Switcher Style */
     .tier-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -193,9 +186,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 12px 8px;
+      padding: 10px 6px;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 800;
       letter-spacing: 1.5px;
       cursor: pointer;
@@ -207,9 +200,9 @@
 
     .tier-label span.small-desc {
       font-family: monospace;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       color: #555;
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
     .tier-winter input:checked + .tier-label { border-color: var(--c-winter); color: var(--c-winter); background: rgba(100, 181, 246, 0.12); box-shadow: 0 0 16px rgba(100, 181, 246, 0.25); }
@@ -217,30 +210,74 @@
     .tier-summer input:checked + .tier-label { border-color: var(--c-summer); color: var(--c-summer); background: rgba(77, 208, 225, 0.12); box-shadow: 0 0 16px rgba(77, 208, 225, 0.25); }
     .tier-spring input:checked + .tier-label { border-color: var(--c-spring); color: var(--c-spring); background: rgba(255, 64, 129, 0.12); box-shadow: 0 0 16px rgba(255, 64, 129, 0.25); }
 
-    /* PREVIEW CARD: VIP METALLIC PASS */
+    /* PREVIEW THẺ 3D INTERACTIVE */
     .preview-area {
+      flex: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-width: 340px;
     }
 
-    #ticket-wrapper {
-      width: 360px;
-      height: 640px;
-      background: #070709;
+    .interactive-note {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #0b0b0e;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.4);
+      padding: 4px 12px;
       border-radius: 20px;
+    }
+
+    /* Khung 3D xoay lật trực tiếp khi chạm/bấm */
+    .card-3d-scene {
+      width: 340px;
+      height: 604px;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    .card-3d-object {
+      width: 100%;
+      height: 100%;
       position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .card-3d-object.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .pass-card {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
       overflow: hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.75),
+        0 25px 50px rgba(0, 0, 0, 0.75),
         0 0 0 1px rgba(255, 255, 255, 0.15),
         inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    /* MẶT TRƯỚC */
+    #front-pass {
+      background: #070709;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transform: rotateY(0deg);
+      z-index: 2;
     }
 
-    #ticket-wrapper::before {
+    #front-pass::before {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0;
@@ -251,11 +288,11 @@
 
     .ticket-orb {
       position: absolute;
-      top: -60px;
+      top: -50px;
       left: 50%;
       transform: translateX(-50%);
-      width: 340px;
-      height: 340px;
+      width: 320px;
+      height: 320px;
       background: radial-gradient(circle, rgba(255, 120, 0, 0.95) 0%, rgba(255, 60, 0, 0.35) 45%, transparent 70%);
       border-radius: 50%;
       filter: blur(28px);
@@ -268,7 +305,7 @@
       top: 40%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(-90deg);
-      font-size: 5.5rem;
+      font-size: 5rem;
       font-weight: 900;
       color: rgba(255, 255, 255, 0.02);
       letter-spacing: 12px;
@@ -281,7 +318,7 @@
       position: relative;
       z-index: 2;
       height: 100%;
-      padding: 22px 20px 20px;
+      padding: 20px 18px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -292,14 +329,12 @@
       width: 44px;
       height: 7px;
       background: #030304;
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.3);
       border-radius: 10px;
       margin: 0 auto 10px;
     }
 
-    .ticket-top {
-      text-align: center;
-    }
+    .ticket-top { text-align: center; }
 
     .tour-meta {
       display: flex;
@@ -307,7 +342,7 @@
       align-items: center;
       margin-bottom: 6px;
       font-family: monospace;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: #b0b0b8;
       letter-spacing: 1.5px;
       text-transform: uppercase;
@@ -330,7 +365,7 @@
     }
 
     .ticket-title-main {
-      font-size: 1.48rem;
+      font-size: 1.4rem;
       font-weight: 900;
       letter-spacing: 1.5px;
       line-height: 1.05;
@@ -345,11 +380,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 5px 14px;
+      padding: 4px 14px;
       border-radius: 4px;
       background: rgba(0, 0, 0, 0.7);
       border: 1px solid rgba(245, 208, 0, 0.6);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
       color: var(--gold-yellow);
       letter-spacing: 2px;
@@ -363,19 +398,19 @@
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
-      padding: 14px;
-      margin-top: 10px;
+      padding: 12px;
+      margin-top: 8px;
     }
 
     .fan-profile-row {
       display: flex;
-      gap: 14px;
+      gap: 12px;
       align-items: center;
     }
 
     .avatar-wrapper {
-      width: 76px;
-      height: 76px;
+      width: 72px;
+      height: 72px;
       border-radius: 10px;
       border: 1.5px solid rgba(255, 255, 255, 0.25);
       background: #111116;
@@ -402,36 +437,33 @@
       opacity: 0.85;
     }
 
-    .fan-meta-col {
-      flex: 1;
-      overflow: hidden;
-    }
+    .fan-meta-col { flex: 1; overflow: hidden; }
 
     .field-caption {
       font-family: monospace;
-      font-size: 0.58rem;
+      font-size: 0.55rem;
       color: #7b7b8a;
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
 
     .fan-nickname-display {
-      font-size: 1.25rem;
+      font-size: 1.18rem;
       font-weight: 800;
       color: #fff;
       text-transform: uppercase;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin: 2px 0 6px;
-      min-height: 28px;
+      margin: 2px 0 5px;
+      min-height: 26px;
     }
 
     .tier-badge-card {
       display: inline-block;
-      padding: 4px 10px;
+      padding: 4px 9px;
       border-radius: 4px;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 800;
       letter-spacing: 1.2px;
       text-transform: uppercase;
@@ -441,22 +473,22 @@
     }
 
     .message-container {
-      margin-top: 10px;
-      padding-top: 10px;
+      margin-top: 8px;
+      padding-top: 8px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      display: none; /* Chỉ hiện khi có nhập nội dung */
+      display: none;
     }
 
     .message-text {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       line-height: 1.35;
       font-style: italic;
       color: #d1d1db;
       background: rgba(0, 0, 0, 0.35);
-      padding: 8px 10px;
+      padding: 7px 9px;
       border-left: 2px solid var(--gold-yellow);
       border-radius: 4px;
-      max-height: 52px;
+      max-height: 50px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -465,21 +497,21 @@
 
     .ticket-bottom {
       border-top: 1px dashed rgba(255, 255, 255, 0.18);
-      padding-top: 12px;
+      padding-top: 10px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
     }
 
     .venue-block .venue-date {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: var(--gold-yellow);
       letter-spacing: 1px;
     }
 
     .venue-block .venue-title {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 700;
       color: #eaeaf0;
       margin-top: 1px;
@@ -487,19 +519,17 @@
 
     .venue-block .venue-sub {
       font-family: monospace;
-      font-size: 0.55rem;
+      font-size: 0.52rem;
       color: #7b7b8a;
       letter-spacing: 0.5px;
     }
 
-    .security-block {
-      text-align: right;
-    }
+    .security-block { text-align: right; }
 
     .barcode-bars {
       display: flex;
       gap: 2px;
-      height: 22px;
+      height: 20px;
       justify-content: flex-end;
       align-items: flex-end;
     }
@@ -507,41 +537,118 @@
     
     .serial-tag {
       font-family: monospace;
-      font-size: 0.58rem;
+      font-size: 0.55rem;
       color: #8c8c99;
       letter-spacing: 1px;
       margin-top: 3px;
     }
 
-    .download-btn {
-      margin-top: 18px;
+    /* MẶT SAU (BACK PASS) */
+    #back-pass {
       background: #000;
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 14px 30px;
-      border-radius: 40px;
-      font-weight: 800;
-      font-size: 0.88rem;
+      transform: rotateY(180deg);
+      z-index: 1;
+    }
+
+    #back-pass .poster-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    #back-pass .back-lanyard {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 44px;
+      height: 7px;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 10px;
+      z-index: 5;
+    }
+
+    /* CÁC NÚT ĐIỀU KHIỂN & XUẤT FILE */
+    .btn-actions-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 25px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .btn-video-export {
+      width: 100%;
+      background: linear-gradient(135deg, #0b0b0e 0%, #1f1f2a 100%);
+      color: var(--gold-yellow);
+      border: 2px solid var(--gold-yellow);
+      padding: 16px 20px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 0.95rem;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 25px rgba(245, 208, 0, 0.35);
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      transition: all 0.25s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
 
-    .download-btn:hover {
-      background: #181820;
-      border-color: var(--gold-yellow);
+    .btn-video-export:hover {
+      background: var(--gold-yellow);
+      color: #000;
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 0 35px rgba(245, 208, 0, 0.6);
+    }
+
+    .btn-video-export:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .image-sub-actions {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .btn-export-sub {
+      flex: 1;
+      background: #000;
+      color: #ccc;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px 14px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-export-sub:hover {
+      border-color: #fff;
+      color: #fff;
+      background: #181820;
+    }
+
+    /* Canvas ẩn dùng để render video xoay 3D */
+    #renderCanvas {
+      display: none;
     }
 
     @media (max-width: 800px) {
       .container { flex-direction: column; align-items: center; }
-      .form-box, #ticket-wrapper { width: 100%; max-width: 360px; }
+      .form-box, .card-3d-scene { width: 100%; max-width: 340px; }
     }
   </style>
 </head>
@@ -549,7 +656,7 @@
 
   <div class="header-logo">
     <h1 class="main-title">CAPITANEUS<br>MUTABILIS</h1>
-    <div class="sub-title">MANIFET OFFICIAL ACCESS PASS</div>
+    <div class="sub-title">MANIFET 3D VIDEO VIP PASS</div>
   </div>
 
   <div class="container">
@@ -558,7 +665,7 @@
     <div class="form-box">
       <div class="form-box-header">
         <h3>THÔNG TIN MANIFET</h3>
-        <span class="sys-code">VER: 2026.VIP</span>
+        <span class="sys-code">3D STUDIO</span>
       </div>
 
       <div class="form-group">
@@ -567,11 +674,20 @@
       </div>
 
       <div class="form-group">
-        <label>ẢNH ĐẠI DIỆN</label>
+        <label>ẢNH AVATAR MẶT TRƯỚC</label>
         <div class="file-upload-wrap">
           <label class="file-btn" for="avatarInput">CHỌN ẢNH</label>
           <input type="file" id="avatarInput" accept="image/*" style="display:none;" onchange="handleAvatar(event)">
           <span class="file-name-text" id="fileName">Chưa chọn ảnh</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ẢNH POSTER MẶT SAU</label>
+        <div class="file-upload-wrap">
+          <label class="file-btn" for="posterInput">ĐỔI POSTER</label>
+          <input type="file" id="posterInput" accept="image/*" style="display:none;" onchange="handlePoster(event)">
+          <span class="file-name-text" id="posterFileName">Dùng poster.jpg mặc định</span>
         </div>
       </div>
 
@@ -615,79 +731,106 @@
       </div>
     </div>
 
-    <!-- KHỐI PREVIEW THẺ VIP PASS -->
+    <!-- KHU VỰC THẺ 3D INTERACTIVE -->
     <div class="preview-area">
-      <div id="ticket-wrapper">
-        <div class="ticket-orb"></div>
-        <div class="ticket-watermark">MUTABILIS</div>
+      <div class="interactive-note">CHẠM VÀO THẺ ĐỂ LẬT XEM MẶT SAU</div>
 
-        <div class="ticket-inner">
+      <div class="card-3d-scene" onclick="toggleFlip()">
+        <div class="card-3d-object" id="cardFlipper">
           
-          <!-- TOP PASS -->
-          <div class="ticket-top">
-            <div class="lanyard-slot"></div>
-            <div class="tour-meta">
-              <span>CB FAN MEETING 2026</span>
-              <span class="live-indicator"><span class="live-dot"></span> PRIORITY</span>
+          <!-- MẶT TRƯỚC -->
+          <div class="pass-card" id="front-pass">
+            <div class="ticket-orb"></div>
+            <div class="ticket-watermark">MUTABILIS</div>
+
+            <div class="ticket-inner">
+              <div class="ticket-top">
+                <div class="lanyard-slot"></div>
+                <div class="tour-meta">
+                  <span>CB FAN MEETING 2026</span>
+                  <span class="live-indicator"><span class="live-dot"></span> PRIORITY</span>
+                </div>
+                <div class="ticket-title-main">CAPITANEUS<br>MUTABILIS</div>
+                <div class="status-badge-card">SẴN SÀNG GIẬT VÉ</div>
+              </div>
+
+              <div class="ticket-body">
+                <div class="fan-profile-row">
+                  <div class="avatar-wrapper">
+                    <img id="cardAvatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%2322222a'><rect width='100' height='100' fill='%23121218'/><circle cx='50' cy='38' r='18' fill='%23555566'/><path d='M22 84 C22 64, 34 58, 50 58 C66 58, 78 64, 78 84 Z' fill='%23555566'/></svg>" alt="Passenger">
+                    <div class="avatar-chip"></div>
+                  </div>
+                  
+                  <div class="fan-meta-col">
+                    <div class="field-caption">PASSENGER NAME</div>
+                    <div class="fan-nickname-display" id="cardNickname"></div>
+                    <div class="field-caption" style="margin-top:4px;">TARGET TIER</div>
+                    <span class="tier-badge-card" id="cardTierBadge">WINTER TIER</span>
+                  </div>
+                </div>
+
+                <div class="message-container" id="messageContainer">
+                  <div class="field-caption" style="margin-bottom: 4px;">TRANSMISSION MESSAGE</div>
+                  <div class="message-text" id="cardMessage"></div>
+                </div>
+              </div>
+
+              <div class="ticket-bottom">
+                <div class="venue-block">
+                  <div class="venue-date">22.11.2026</div>
+                  <div class="venue-title">SÂN KHẤU C30, TP.HCM</div>
+                  <div class="venue-sub">141 BẮC HẢI, DIÊN HỒNG</div>
+                </div>
+
+                <div class="security-block">
+                  <div class="barcode-bars">
+                    <div class="barcode-line" style="height: 100%;"></div>
+                    <div class="barcode-line" style="width: 3px; height: 100%;"></div>
+                    <div class="barcode-line" style="height: 60%;"></div>
+                    <div class="barcode-line" style="width: 4px; height: 90%;"></div>
+                    <div class="barcode-line" style="height: 40%;"></div>
+                    <div class="barcode-line" style="width: 2px; height: 100%;"></div>
+                    <div class="barcode-line" style="height: 75%;"></div>
+                    <div class="barcode-line" style="width: 3px; height: 100%;"></div>
+                  </div>
+                  <div class="serial-tag" id="cardSerial">MNF-2026-VIP</div>
+                </div>
+              </div>
+
             </div>
-            <div class="ticket-title-main">CAPITANEUS<br>MUTABILIS</div>
-            <div class="status-badge-card">SẴN SÀNG GIẬT VÉ</div>
           </div>
 
-          <!-- BODY PASS -->
-          <div class="ticket-body">
-            <div class="fan-profile-row">
-              <div class="avatar-wrapper">
-                <img id="cardAvatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%2322222a'><rect width='100' height='100' fill='%23121218'/><circle cx='50' cy='38' r='18' fill='%23555566'/><path d='M22 84 C22 64, 34 58, 50 58 C66 58, 78 64, 78 84 Z' fill='%23555566'/></svg>" alt="Passenger">
-                <div class="avatar-chip"></div>
-              </div>
-              
-              <div class="fan-meta-col">
-                <div class="field-caption">PASSENGER NAME</div>
-                <div class="fan-nickname-display" id="cardNickname"></div>
-                <div class="field-caption" style="margin-top:4px;">TARGET TIER</div>
-                <span class="tier-badge-card" id="cardTierBadge">WINTER TIER</span>
-              </div>
-            </div>
-
-            <div class="message-container" id="messageContainer">
-              <div class="field-caption" style="margin-bottom: 4px;">TRANSMISSION MESSAGE</div>
-              <div class="message-text" id="cardMessage"></div>
-            </div>
-          </div>
-
-          <!-- FOOTER PASS -->
-          <div class="ticket-bottom">
-            <div class="venue-block">
-              <div class="venue-date">22.11.2026</div>
-              <div class="venue-title">SÂN KHẤU C30, TP.HCM</div>
-              <div class="venue-sub">141 BẮC HẢI, DIÊN HỒNG</div>
-            </div>
-
-            <div class="security-block">
-              <div class="barcode-bars">
-                <div class="barcode-line" style="height: 100%;"></div>
-                <div class="barcode-line" style="width: 3px; height: 100%;"></div>
-                <div class="barcode-line" style="height: 60%;"></div>
-                <div class="barcode-line" style="width: 4px; height: 90%;"></div>
-                <div class="barcode-line" style="height: 40%;"></div>
-                <div class="barcode-line" style="width: 2px; height: 100%;"></div>
-                <div class="barcode-line" style="height: 75%;"></div>
-                <div class="barcode-line" style="width: 3px; height: 100%;"></div>
-              </div>
-              <div class="serial-tag" id="cardSerial">MNF-2026-VIP</div>
-            </div>
+          <!-- MẶT SAU (POSTER) -->
+          <div class="pass-card" id="back-pass">
+            <div class="back-lanyard"></div>
+            <img class="poster-img" id="cardPoster" src="poster.jpg" alt="Poster Captain Boy">
           </div>
 
         </div>
       </div>
 
-      <button class="download-btn" onclick="downloadImage()">
-        XUẤT THẺ VIP PASS (PNG)
-      </button>
+      <!-- CÁC NÚT XUẤT VIDEO & ẢNH -->
+      <div class="btn-actions-wrap">
+        <button class="btn-video-export" id="btnVideo" onclick="exportSpinningVideo()">
+          XUẤT VIDEO XOAY 3D (STORY / REELS)
+        </button>
+
+        <div class="image-sub-actions">
+          <button class="btn-export-sub" onclick="downloadSingle('front-pass', 'MAT_TRUOC')">
+            LƯU ẢNH TRƯỚC
+          </button>
+          <button class="btn-export-sub" onclick="downloadSingle('back-pass', 'MAT_SAU')">
+            LƯU ẢNH SAU
+          </button>
+        </div>
+      </div>
+
     </div>
 
   </div>
+
+  <!-- CANVAS ẨN PHỤC VỤ QUAY VIDEO 3D -->
+  <canvas id="renderCanvas" width="720" height="1280"></canvas>
 
   <script>
     const tierConfigMap = {
@@ -696,6 +839,10 @@
       SUMMER: { color: 'var(--c-summer)', glow: 'rgba(77, 208, 225, 0.45)', text: 'SUMMER TIER' },
       SPRING: { color: 'var(--c-spring)', glow: 'rgba(255, 64, 129, 0.45)', text: 'SPRING TIER' }
     };
+
+    function toggleFlip() {
+      document.getElementById('cardFlipper').classList.toggle('flipped');
+    }
 
     function handleAvatar(event) {
       const file = event.target.files[0];
@@ -709,15 +856,25 @@
       }
     }
 
+    function handlePoster(event) {
+      const file = event.target.files[0];
+      if (file) {
+        document.getElementById('posterFileName').innerText = file.name;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('cardPoster').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
     function updatePreview() {
       const nick = document.getElementById('inputNickname').value.trim();
       const msg = document.getElementById('inputMessage').value.trim();
       const selectedTier = document.querySelector('input[name="tier"]:checked').value;
 
-      // Cập nhật fanname (nếu trống thì để trống)
       document.getElementById('cardNickname').innerText = nick;
 
-      // Hộp lời nhắn: Chỉ hiển thị khi có nhập chữ
       const msgContainer = document.getElementById('messageContainer');
       const msgElement = document.getElementById('cardMessage');
       if (msg) {
@@ -728,14 +885,12 @@
         msgElement.innerText = '';
       }
 
-      // Cập nhật hạng vé
       const tierData = tierConfigMap[selectedTier];
       const badge = document.getElementById('cardTierBadge');
       badge.style.background = tierData.color;
       badge.style.boxShadow = `0 0 14px ${tierData.glow}`;
       badge.innerText = tierData.text;
 
-      // Sinh mã serial bảo mật ngẫu nhiên
       const randDigits = Math.floor(1000 + Math.random() * 9000);
       document.getElementById('cardSerial').innerText = `MNF-26-${selectedTier.substring(0,2)}-${randDigits}`;
     }
@@ -744,27 +899,172 @@
     document.getElementById('inputMessage').addEventListener('input', updatePreview);
     document.querySelectorAll('input[name="tier"]').forEach(r => r.addEventListener('change', updatePreview));
 
-    function downloadImage() {
-      const ticketElement = document.getElementById('ticket-wrapper');
+    // TẢI ẢNH TĨNH
+    function downloadSingle(elementId, suffix) {
+      const el = document.getElementById(elementId);
       const nickname = document.getElementById('inputNickname').value.trim() || 'MANIFET';
-      
-      const originalRadius = ticketElement.style.borderRadius;
-      ticketElement.style.borderRadius = '0px';
+      const originalRadius = el.style.borderRadius;
+      el.style.borderRadius = '0px';
 
-      html2canvas(ticketElement, {
-        scale: 3,
-        backgroundColor: null,
-        useCORS: true
-      }).then(canvas => {
-        ticketElement.style.borderRadius = originalRadius;
+      html2canvas(el, { scale: 3, backgroundColor: null, useCORS: true }).then(canvas => {
+        el.style.borderRadius = originalRadius;
         const link = document.createElement('a');
-        link.download = `VIP_PASS_${nickname.toUpperCase().replace(/\s+/g, '_')}.png`;
+        link.download = `VIP_PASS_${suffix}_${nickname.toUpperCase().replace(/\s+/g, '_')}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
       });
     }
 
-    // Khởi tạo trạng thái ban đầu sạch
+    // ========================================================
+    // TÍNH NĂNG ĐỈNH CAO: RENDER VIDEO XOAY 3D (MP4/WEBM 60FPS)
+    // ========================================================
+    async function exportSpinningVideo() {
+      const btn = document.getElementById('btnVideo');
+      const originalBtnText = btn.innerText;
+      btn.disabled = true;
+      btn.innerText = 'ĐANG CHỤP CHI TIẾT 2 MẶT...';
+
+      const nickname = document.getElementById('inputNickname').value.trim() || 'MANIFET';
+      const frontEl = document.getElementById('front-pass');
+      const backEl = document.getElementById('back-pass');
+
+      // Tạm thời bỏ flip để chụp chuẩn xác
+      const flipper = document.getElementById('cardFlipper');
+      flipper.classList.remove('flipped');
+
+      try {
+        // Chụp 2 mặt thành 2 hình texture độ nét cao
+        const canvasFront = await html2canvas(frontEl, { scale: 2.2, backgroundColor: null, useCORS: true });
+        const canvasBack = await html2canvas(backEl, { scale: 2.2, backgroundColor: null, useCORS: true });
+
+        const imgFront = new Image();
+        imgFront.src = canvasFront.toDataURL('image/png');
+        await new Promise(r => imgFront.onload = r);
+
+        const imgBack = new Image();
+        imgBack.src = canvasBack.toDataURL('image/png');
+        await new Promise(r => imgBack.onload = r);
+
+        btn.innerText = 'ĐANG QUAY VIDEO 3D (3 GIÂY)...';
+
+        // Thiết lập Canvas Studio 720x1280 (Tỷ lệ chuẩn 9:16 Story/Reels/TikTok)
+        const canvas = document.getElementById('renderCanvas');
+        const ctx = canvas.getContext('2d');
+        const W = 720, H = 1280;
+        const cardW = 440;
+        const cardH = 780;
+        const cx = W / 2;
+        const cy = H / 2;
+
+        // Chuẩn bị MediaRecorder
+        const stream = canvas.captureStream(60);
+        let mime = 'video/mp4';
+        if (!MediaRecorder.isTypeSupported('video/mp4')) {
+          mime = 'video/webm;codecs=vp9';
+          if (!MediaRecorder.isTypeSupported(mime)) mime = 'video/webm';
+        }
+
+        const recorder = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 8000000 });
+        const chunks = [];
+        recorder.ondataavailable = e => chunks.push(e.data);
+        recorder.onstop = () => {
+          const blob = new Blob(chunks, { type: mime });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          const ext = mime.includes('mp4') ? 'mp4' : 'webm';
+          a.href = url;
+          a.download = `VIDEO_PASS_3D_${nickname.toUpperCase().replace(/\s+/g, '_')}.${ext}`;
+          a.click();
+          btn.disabled = false;
+          btn.innerText = originalBtnText;
+        };
+
+        recorder.start();
+
+        // Diễn hoạt 3D xoay tròn mượt mà đúng 2 vòng (4 giây = 240 frames)
+        const totalFrames = 240;
+        let currentFrame = 0;
+
+        function renderFrame() {
+          if (currentFrame >= totalFrames) {
+            recorder.stop();
+            return;
+          }
+
+          const progress = currentFrame / totalFrames;
+          const angle = progress * (Math.PI * 4); // Xoay 2 vòng 360 độ hoàn chỉnh
+          const cos = Math.cos(angle);
+          const isFront = cos >= 0;
+
+          // 1. Vẽ nền vũ trụ vàng cam bốc lửa
+          ctx.fillStyle = '#08080a';
+          ctx.fillRect(0, 0, W, H);
+
+          const bgGrad = ctx.createRadialGradient(cx, cy - 80, 20, cx, cy - 80, 480);
+          bgGrad.addColorStop(0, 'rgba(255, 120, 0, 0.45)');
+          bgGrad.addColorStop(0.5, 'rgba(245, 208, 0, 0.12)');
+          bgGrad.addColorStop(1, 'rgba(8, 8, 10, 0)');
+          ctx.fillStyle = bgGrad;
+          ctx.fillRect(0, 0, W, H);
+
+          // 2. Vẽ bóng đổ 3D dưới sàn
+          ctx.save();
+          const shadowWidth = Math.max(20, Math.abs(cos) * cardW * 0.95);
+          ctx.beginPath();
+          ctx.ellipse(cx, cy + (cardH / 2) + 70, shadowWidth / 2, 18, 0, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+          ctx.filter = 'blur(10px)';
+          ctx.fill();
+          ctx.restore();
+
+          // 3. Vẽ Thẻ 3D Xoay
+          ctx.save();
+          ctx.translate(cx, cy);
+
+          // Hiệu ứng phối cảnh nghiêng nhẹ lúc xoay (tilt)
+          const tilt = Math.sin(angle) * 0.04;
+          ctx.transform(cos, tilt, 0, 1, 0, 0);
+
+          if (isFront) {
+            ctx.drawImage(imgFront, -cardW / 2, -cardH / 2, cardW, cardH);
+            
+            // Ánh sáng kim loại phản chiếu khi xoay
+            const glareGrad = ctx.createLinearGradient(-cardW / 2, -cardH / 2, cardW / 2, cardH / 2);
+            glareGrad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+            glareGrad.addColorStop(Math.min(1, Math.max(0, (1 - cos))), 'rgba(255, 255, 255, 0.28)');
+            glareGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = glareGrad;
+            ctx.fillRect(-cardW / 2, -cardH / 2, cardW, cardH);
+          } else {
+            // Lật mặt sau (poster)
+            ctx.scale(-1, 1);
+            ctx.drawImage(imgBack, -cardW / 2, -cardH / 2, cardW, cardH);
+
+            const glareGrad = ctx.createLinearGradient(-cardW / 2, -cardH / 2, cardW / 2, cardH / 2);
+            glareGrad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+            glareGrad.addColorStop(Math.min(1, Math.max(0, (1 + cos))), 'rgba(255, 255, 255, 0.35)');
+            glareGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = glareGrad;
+            ctx.fillRect(-cardW / 2, -cardH / 2, cardW, cardH);
+          }
+
+          ctx.restore();
+
+          currentFrame++;
+          requestAnimationFrame(renderFrame);
+        }
+
+        renderFrame();
+
+      } catch (err) {
+        console.error(err);
+        alert('Lỗi xuất video: Vui lòng kiểm tra ảnh poster hoặc thử lại!');
+        btn.disabled = false;
+        btn.innerText = originalBtnText;
+      }
+    }
+
+    // Khởi tạo ban đầu
     updatePreview();
   </script>
 </body>
