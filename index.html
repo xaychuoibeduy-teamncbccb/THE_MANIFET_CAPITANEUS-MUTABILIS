@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAPITANEUS MUTABILIS - MANIFET SĂN VÉ THÀNH CÔNG</title>
+  <title>CAPITANEUS MUTABILIS - MANIFEST SĂN VÉ THÀNH CÔNG</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -661,7 +661,7 @@
 
   <div class="header-logo">
     <h1 class="main-title">CAPITANEUS<br>MUTABILIS</h1>
-    <div class="sub-title">MANIFET SĂN VÉ THÀNH CÔNG</div>
+    <div class="sub-title">MANIFEST SĂN VÉ THÀNH CÔNG</div>
   </div>
 
   <div class="container">
@@ -669,7 +669,7 @@
     <!-- KHỐI NHẬP LIỆU -->
     <div class="form-box">
       <div class="form-box-header">
-        <h3>THÔNG TIN MANIFET</h3>
+        <h3>THÔNG TIN MANIFEST</h3>
         <span class="sys-code">CUUCOCANH</span>
       </div>
 
@@ -796,7 +796,7 @@
       <!-- CÁC NÚT XUẤT VIDEO & ẢNH -->
       <div class="btn-actions-wrap">
         <button class="btn-video-export" id="btnVideo" onclick="exportSpinningVideo()">
-          XUẤT VIDEO XOAY 3D (5S)
+          XUẤT VIDEO XOAY 3D (10S)
         </button>
 
         <div class="image-sub-actions">
@@ -934,7 +934,7 @@
     }
 
     // ========================================================
-    // QUAY VIDEO 3D CHUẨN ĐÚNG 5 GIÂY (CHẬM & MƯỢT MÀ)
+    // QUAY VIDEO 3D CÓ NHẠC NỀN CHUẨN 10 GIÂY
     // ========================================================
     async function exportSpinningVideo() {
       const btn = document.getElementById('btnVideo');
@@ -947,6 +947,9 @@
 
       const flipper = document.getElementById('cardFlipper');
       flipper.classList.remove('flipped');
+
+      let audioCtx = null;
+      let bgAudio = null;
 
       try {
         const canvasFront = await html2canvas(frontEl, { scale: 2, backgroundColor: null, useCORS: true });
@@ -968,13 +971,37 @@
         const cx = W / 2;
         const cy = H / 2;
 
-        const stream = canvas.captureStream(30);
+        const videoStream = canvas.captureStream(30);
+
+        // Chuẩn bị âm thanh từ file musicmnf.mp3
+        let audioTrack = null;
+        try {
+          bgAudio = new Audio('musicmnf.mp3');
+          bgAudio.crossOrigin = 'anonymous';
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state === 'suspended') {
+            await audioCtx.resume();
+          }
+          const source = audioCtx.createMediaElementSource(bgAudio);
+          const audioDest = audioCtx.createMediaStreamDestination();
+          source.connect(audioDest);
+          audioTrack = audioDest.stream.getAudioTracks()[0];
+        } catch (e) {
+          console.warn("Lỗi khi nạp file nhạc:", e);
+        }
+
+        // Ghép cả track hình và track nhạc
+        const combinedTracks = [...videoStream.getVideoTracks()];
+        if (audioTrack) {
+          combinedTracks.push(audioTrack);
+        }
+        const recordStream = new MediaStream(combinedTracks);
 
         const possibleMimes = [
+          'video/mp4;codecs=avc1,mp4a.40.2',
           'video/mp4',
-          'video/mp4;codecs=avc1',
-          'video/webm;codecs=vp9',
-          'video/webm;codecs=vp8',
+          'video/webm;codecs=vp9,opus',
+          'video/webm;codecs=vp8,opus',
           'video/webm'
         ];
         let chosenMime = '';
@@ -989,7 +1016,7 @@
         generatedMimeType = isMp4 ? 'video/mp4' : 'video/webm';
         const ext = isMp4 ? 'mp4' : 'webm';
 
-        const recorder = new MediaRecorder(stream, { 
+        const recorder = new MediaRecorder(recordStream, { 
           mimeType: chosenMime || undefined, 
           videoBitsPerSecond: 4500000 
         });
@@ -1000,6 +1027,14 @@
         };
         
         recorder.onstop = async () => {
+          if (bgAudio) {
+            bgAudio.pause();
+            bgAudio.currentTime = 0;
+          }
+          if (audioCtx && audioCtx.state !== 'closed') {
+            audioCtx.close();
+          }
+
           generatedVideoBlob = new Blob(chunks, { type: generatedMimeType });
           generatedVideoUrl = URL.createObjectURL(generatedVideoBlob);
           generatedFileName = `VIDEO_PASS_3D_${nickname.toUpperCase().replace(/\s+/g, '_')}.${ext}`;
@@ -1011,26 +1046,29 @@
           await directSaveVideo();
         };
 
+        // Bắt đầu phát nhạc và quay video
+        if (bgAudio) {
+          bgAudio.currentTime = 0;
+          bgAudio.play().catch(e => console.log('Audio autoplay prevented:', e));
+        }
         recorder.start();
 
-        // ĐO THỜI GIAN THẬT CHUẨN ĐÚNG 5000MS (5 GIÂY)
-        const duration = 5000;
+        // THỜI LƯỢNG 10 GIÂY (10000MS) - THẺ XOAY TỪ TỐN, CHẬM VÀ MƯỢT
+        const duration = 10000;
         let startTime = null;
 
         function renderFrame(timestamp) {
           if (!startTime) startTime = timestamp;
           const elapsed = timestamp - startTime;
 
-          // Hiển thị đếm ngược trực tiếp trên nút bấm
           const secLeft = Math.max(0, Math.ceil((duration - elapsed) / 1000));
-          btn.innerText = `ĐANG TẠO VIDEO... (${secLeft}S)`;
+          btn.innerText = `ĐANG TẠO VIDEO CÓ NHẠC... (${secLeft}S)`;
 
           if (elapsed >= duration) {
             recorder.stop();
             return;
           }
 
-          // Tiến độ từ 0.0 -> 1.0 trong đúng 5 giây
           const progress = Math.min(elapsed / duration, 1);
           const angle = progress * (Math.PI * 2);
           const cos = Math.cos(angle);
@@ -1047,7 +1085,7 @@
           ctx.fillStyle = bgGrad;
           ctx.fillRect(0, 0, W, H);
 
-          // Bóng đổ động
+          // Bóng đổ động dưới chân thẻ
           ctx.save();
           const shadowWidth = Math.max(20, Math.abs(cos) * cardW * 0.95);
           ctx.beginPath();
@@ -1074,7 +1112,6 @@
             ctx.fillStyle = glareGrad;
             ctx.fillRect(-cardW / 2, -cardH / 2, cardW, cardH);
           } else {
-            // Hiển thị mặt sau đúng chiều chữ 100%
             ctx.drawImage(imgBack, -cardW / 2, -cardH / 2, cardW, cardH);
 
             const glareGrad = ctx.createLinearGradient(-cardW / 2, -cardH / 2, cardW / 2, cardH / 2);
@@ -1094,9 +1131,11 @@
 
       } catch (err) {
         console.error(err);
+        if (bgAudio) bgAudio.pause();
+        if (audioCtx && audioCtx.state !== 'closed') audioCtx.close();
         alert('Vui lòng mở trang web bằng Safari (trên iPhone) hoặc Chrome (trên Android) ngoài để xuất video nhé!');
         btn.disabled = false;
-        btn.innerText = 'XUẤT VIDEO XOAY 3D (5S)';
+        btn.innerText = 'XUẤT VIDEO XOAY 3D (10S)';
       }
     }
 
